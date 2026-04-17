@@ -166,7 +166,28 @@
       background-size: cover;
       background-position: center top;
       filter: brightness(0.75);
+      opacity: 1;
+      transition: opacity 1.2s ease;
+      z-index: 0;
     }
+
+    /* Video background — 9:16 centrado */
+    .hero__video {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100vh;
+      width: calc(100vh * 9 / 16);
+      object-fit: cover;
+      filter: brightness(0.75);
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      z-index: 0;
+    }
+
+    .hero__video.active { opacity: 1; }
+    .hero__photo.hidden  { opacity: 0; }
 
     /* Golden bokeh/sparkle gradient overlay */
     .hero__overlay-gradient {
@@ -313,15 +334,16 @@
     <div class="navbar__divider"></div>
 
     <ul class="navbar__links" id="navLinks">
-      <li><a href="#hero">Inicio</a></li>
-      <li><a href="#nosotros">Nosotros</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#hero" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+      <li><a href="#eventos" data-i18n="nav.events">Eventos</a></li>
     </ul>
 
     <div class="navbar__spacer"></div>
 
-    <a href="#unirme" class="navbar__cta">Únete</a>
+    <button class="navbar__lang" id="langToggle" onclick="toggleLang()">EN</button>
+    <a href="#unirme" class="navbar__cta" data-i18n="nav.cta">Únete</a>
 
     <button class="navbar__hamburger" id="hamburger" aria-label="Menú">
       <span></span><span></span><span></span>
@@ -330,20 +352,21 @@
 
   <!-- Mobile menu -->
   <div class="navbar__mobile" id="mobileMenu">
-    <a href="#hero" class="navbar__mobile-link">Inicio</a>
-    <a href="#nosotros" class="navbar__mobile-link">Nosotros</a>
-    <a href="#galeria" class="navbar__mobile-link">Galería</a>
-    <a href="#eventos" class="navbar__mobile-link">Eventos</a>
-    <a href="#unirme" class="navbar__mobile-link navbar__mobile-cta">Únete</a>
+    <a href="#hero" class="navbar__mobile-link" data-i18n="nav.home">Inicio</a>
+    <a href="#nosotros" class="navbar__mobile-link" data-i18n="nav.about">Nosotros</a>
+    <a href="#galeria" class="navbar__mobile-link" data-i18n="nav.gallery">Galería</a>
+    <a href="#eventos" class="navbar__mobile-link" data-i18n="nav.events">Eventos</a>
+    <a href="#unirme" class="navbar__mobile-link navbar__mobile-cta" data-i18n="nav.cta">Únete</a>
   </div>
 
   
   <section class="hero" id="hero">
-    <div class="hero__photo"></div>
+    <div class="hero__photo" id="heroPhoto"></div>
+    <video class="hero__video" id="heroVideo" src="../imagenes%202/video/video%20hero.mp4" muted playsinline loop></video>
     <div class="hero__overlay-gradient"></div>
     <div class="hero__bottom-fade"></div>
 
-    
+
     <canvas class="hero__sparkles" id="sparkleCanvas"></canvas>
 
     <div class="hero__content">
@@ -353,13 +376,13 @@
       <h1 class="hero__title">Phi Zeta Chi</h1>
 
       <div class="hero__subtitle-line">
-        <span class="hero__subtitle">Cap. Pasivo Alpha Alpha</span>
+        <span class="hero__subtitle" data-i18n="hero.subtitle">Cap. Pasivo Alpha Alpha</span>
       </div>
 
-      <p class="hero__location">Roberto Garces, FL.</p>
+      <p class="hero__location" data-i18n="hero.location">Roberto Garces, FL.</p>
 
       <div class="hero__tagline-wrap">
-        <p class="hero__tagline">Impactando Nuestras Comunidades</p>
+        <p class="hero__tagline" data-i18n="hero.tagline">Impactando Nuestras Comunidades</p>
       </div>
     </div>
   </section>
@@ -468,6 +491,121 @@
       <canvas id="donationCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
     </div>
   </section>
+
+  <!-- United Hearts About -->
+  <section class="uh__about">
+    <button class="uh__toggle" id="uhToggle" onclick="toggleUH()">
+      <span class="uh__toggle-icon">&#9829;</span>
+      <span data-i18n="uh.btn">¿Qué es United Hearts?</span>
+      <span class="uh__arrow">&#9660;</span>
+    </button>
+    <div class="uh__body" id="uhBody">
+      <div class="uh__rule"></div>
+      <p data-i18n="uh.p1"><strong>United Hearts – Hope for All</strong> es la división de contacto comunitario y ayuda humanitaria del Capítulo Pasivo Alpha Alpha – Roberto Garcés, Florida, de la Fraternidad PHI ZETA CHI.</p>
+      <p data-i18n="uh.p2">Su propósito es canalizar esfuerzos y recursos en apoyo a las poblaciones más vulnerables.</p>
+      <p data-i18n="uh.p3">Esta iniciativa integra a la fraternidad, la comunidad y organizaciones sin fines de lucro bajo un mismo objetivo: servir y generar un impacto real en quienes más lo necesitan.</p>
+      <p data-i18n="uh.p4">United Hearts promueve la participación abierta. Cualquier persona puede unirse de manera voluntaria o contribuir mediante donaciones, apoyando así la continuidad de nuestras labores.</p>
+      <p class="uh__closing" data-i18n="uh.closing">Juntos logramos más.</p>
+      <div class="uh__rule"></div>
+    </div>
+  </section>
+
+  <style>
+    .uh__about {
+      background: linear-gradient(180deg, #0d0700 0%, #1a0d00 100%);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .uh__toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(201,168,76,0.75);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .uh__toggle:hover,
+    .uh__toggle.open {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .uh__toggle-icon { color: #c0392b; font-size: 11px; }
+
+    .uh__arrow {
+      font-size: 8px;
+      color: var(--gold-dark);
+      transition: transform 0.3s ease;
+    }
+
+    .uh__toggle.open .uh__arrow { transform: rotate(180deg); }
+
+    .uh__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+      width: 100%;
+    }
+
+    .uh__body.open {
+      max-height: 700px;
+      opacity: 1;
+    }
+
+    .uh__rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      margin: 18px 0;
+    }
+
+    .uh__body p {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,230,180,0.78);
+      line-height: 1.8;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .uh__body strong { color: var(--gold-light); font-weight: 700; }
+
+    .uh__closing {
+      font-family: 'Cinzel', serif !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      color: var(--gold) !important;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 0 !important;
+    }
+  </style>
+
+  <script>
+    function toggleUH() {
+      const btn  = document.getElementById('uhToggle');
+      const body = document.getElementById('uhBody');
+      btn.classList.toggle('open');
+      body.classList.toggle('open');
+    }
+  </script>
 
   <style>
     /* ===== DONATION SECTION ===== */
@@ -831,6 +969,32 @@
   </script>
 
   <script>
+  (function() {
+    const photo = document.getElementById('heroPhoto');
+    const video = document.getElementById('heroVideo');
+    const IMAGE_DURATION = 4000;  // 4s mostrando imagen
+    const VIDEO_DURATION  = 8000; // 8s mostrando video (o hasta que termine)
+
+    function showVideo() {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      video.classList.add('active');
+      photo.classList.add('hidden');
+      setTimeout(showPhoto, VIDEO_DURATION);
+    }
+
+    function showPhoto() {
+      video.classList.remove('active');
+      photo.classList.remove('hidden');
+      setTimeout(showVideo, IMAGE_DURATION);
+    }
+
+    // Arranca con la imagen, luego alterna
+    setTimeout(showVideo, IMAGE_DURATION);
+  })();
+  </script>
+
+  <script>
   new p5(function(p) {
     const canvas = document.getElementById('donationCanvas');
     let W, H, motes = [], glints = [];
@@ -947,124 +1111,66 @@
   <section class="events" id="eventos">
     <div class="events__header">
       <div class="events__header-line"></div>
-      <h2 class="events__title">Próximos Eventos</h2>
+      <h2 class="events__title" data-i18n="events.title">Próximos Eventos</h2>
       <div class="events__header-line"></div>
     </div>
 
     <div class="events__carousel-wrap">
       <div class="events__track" id="eventsTrack">
 
-        
-        <div class="events__group">
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Convención 2026</p>
-                <p class="events__card-loc">Aguadilla, PR</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
+        <div class="events__card">
+          <div class="events__img-wrap">
+            <div class="events__img-placeholder">
+              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
+                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+              </svg>
             </div>
           </div>
-
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Florida Family Homecoming 2026</p>
-                <p class="events__card-loc">Todo en Florida</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Jornadas Comunitarias</p>
-                <p class="events__card-loc">Por confirmar</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
-            </div>
+          <div class="events__card-info">
+            <p class="events__card-title" data-i18n="events.card1">CONVENCIÓN 2026</p>
+            <p class="events__card-loc" data-i18n="events.loc1">Aguadilla, PR</p>
+            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
           </div>
         </div>
 
-        
-        <div class="events__group">
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Evento Próximo</p>
-                <p class="events__card-loc">Por confirmar</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
+        <div class="events__card">
+          <div class="events__img-wrap">
+            <div class="events__img-placeholder">
+              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
+                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+              </svg>
             </div>
           </div>
+          <div class="events__card-info">
+            <p class="events__card-title" data-i18n="events.card2">PHI ZETA FL. FAMILY HOMECOMING</p>
+            <p class="events__card-loc" data-i18n="events.loc2">Florida</p>
+            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
+          </div>
+        </div>
 
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Evento Próximo</p>
-                <p class="events__card-loc">Por confirmar</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
+        <div class="events__card">
+          <div class="events__img-wrap">
+            <div class="events__img-placeholder">
+              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
+                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+              </svg>
             </div>
           </div>
-
-          <div class="events__card">
-            <div class="events__img-wrap">
-              <div class="events__img-placeholder">
-                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
-                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="events__card-overlay">
-                <p class="events__card-title">Evento Próximo</p>
-                <p class="events__card-loc">Por confirmar</p>
-                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
-              </div>
-            </div>
+          <div class="events__card-info">
+            <p class="events__card-title" data-i18n="events.card3">JORNADA COMUNITARIA</p>
+            <p class="events__card-loc" data-i18n="events.tbc">Por confirmar</p>
+            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
           </div>
         </div>
 
       </div>
 
-      
       <button class="events__arrow events__arrow--prev" id="evtPrev" aria-label="Anterior">
         <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -1073,10 +1179,10 @@
       </button>
     </div>
 
-    
     <div class="events__dots">
       <button class="events__dot events__dot--active" data-idx="0"></button>
       <button class="events__dot" data-idx="1"></button>
+      <button class="events__dot" data-idx="2"></button>
     </div>
   </section>
 
@@ -1111,40 +1217,36 @@
       text-shadow: 0 0 20px rgba(201,168,76,0.3);
     }
 
-    /* Carousel wrap */
+    /* Carousel wrap — muestra 1 card + peek lateral */
     .events__carousel-wrap {
       position: relative;
       overflow: hidden;
-      padding: 0 16px;
+      padding: 0 32px;
     }
 
     .events__track {
       display: flex;
+      gap: 16px;
       transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       will-change: transform;
     }
 
-    /* Each group = 3 cards side by side */
-    .events__group {
-      display: flex;
-      gap: 8px;
-      flex-shrink: 0;
-      width: 100%;
-    }
-
     .events__card {
-      flex: 1;
-      min-width: 0;
+      flex-shrink: 0;
+      width: calc(100% - 32px);
+      background: linear-gradient(160deg, #1e1000 0%, #2c1800 60%, #1a0c00 100%);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     }
 
     .events__img-wrap {
       position: relative;
       width: 100%;
-      padding-top: 75%;   /* 4:3 ratio */
-      border-radius: 8px;
-      overflow: hidden;
-      background: #1e1000;
-      border: 1px solid rgba(201,168,76,0.18);
+      padding-top: 56%;  /* 16:9 */
+      background: #120800;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
     }
 
     .events__img-placeholder {
@@ -1157,110 +1259,97 @@
     }
 
     .events__img-placeholder svg {
-      width: 55%;
-      opacity: 0.6;
+      width: 30%;
+      opacity: 0.4;
     }
 
-    .events__card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top,
-        rgba(0,0,0,0.88) 0%,
-        rgba(0,0,0,0.35) 55%,
-        transparent 100%);
+    .events__card-info {
+      padding: 16px 18px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 8px 7px;
-      gap: 3px;
+      gap: 6px;
     }
 
     .events__card-title {
       font-family: 'Cinzel', serif;
-      font-size: 8.5px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.25;
-      letter-spacing: 0.3px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.35;
+      letter-spacing: 0.8px;
     }
 
     .events__card-loc {
       font-family: 'Lato', sans-serif;
-      font-size: 7.5px;
-      color: rgba(240,210,120,0.85);
-      letter-spacing: 0.3px;
+      font-size: 11px;
+      color: rgba(201,168,76,0.65);
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .events__card-btn {
       display: inline-block;
-      margin-top: 4px;
-      background: rgba(30,15,0,0.75);
-      border: 1px solid rgba(201,168,76,0.55);
-      color: var(--gold-light);
+      margin-top: 8px;
+      align-self: flex-start;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
       font-family: 'Lato', sans-serif;
-      font-size: 7.5px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      padding: 4px 8px;
-      border-radius: 3px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 4px;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
 
     .events__card-btn:hover {
-      background: rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.12);
       border-color: var(--gold-light);
+      color: var(--gold-light);
     }
 
     /* Arrows */
     .events__arrow {
       position: absolute;
-      top: 50%;
+      top: 28%;
       transform: translateY(-50%);
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: rgba(20,10,0,0.75);
-      border: 1px solid rgba(201,168,76,0.45);
+      background: rgba(10,5,0,0.85);
+      border: 1px solid rgba(201,168,76,0.35);
       color: var(--gold-light);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       z-index: 10;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.2s;
       padding: 0;
     }
 
-    .events__arrow svg { width: 16px; height: 16px; }
-
-    .events__arrow:hover {
-      background: rgba(201,168,76,0.2);
-      border-color: var(--gold-light);
-    }
-
-    .events__arrow--prev { left: 2px; }
-    .events__arrow--next { right: 2px; }
-
-    .events__arrow:disabled {
-      opacity: 0.25;
-      cursor: default;
-    }
+    .events__arrow svg { width: 14px; height: 14px; }
+    .events__arrow:hover { background: rgba(201,168,76,0.15); }
+    .events__arrow--prev { left: 4px; }
+    .events__arrow--next { right: 4px; }
 
     /* Dots */
     .events__dots {
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 20px;
     }
 
     .events__dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: rgba(201,168,76,0.25);
-      border: 1px solid rgba(201,168,76,0.4);
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.35);
       cursor: pointer;
       padding: 0;
       transition: background 0.2s, transform 0.2s;
@@ -1278,26 +1367,25 @@
       const btnPrev = document.getElementById('evtPrev');
       const btnNext = document.getElementById('evtNext');
       const dots    = document.querySelectorAll('.events__dot');
-      const total   = 2;   // 2 groups
+      const total   = 3;
       let   current = 0;
 
       function goTo(idx) {
         current = idx;
         track.style.transform = `translateX(-${idx * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('events__dot--active', i === idx));
-        btnPrev.disabled = idx === 0;
-        btnNext.disabled = idx === total - 1;
+        btnPrev.style.opacity = idx === 0 ? '0.3' : '1';
+        btnNext.style.opacity = idx === total - 1 ? '0.3' : '1';
       }
 
       btnNext.addEventListener('click', () => { if (current < total-1) goTo(current+1); });
       btnPrev.addEventListener('click', () => { if (current > 0)       goTo(current-1); });
       dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
 
-      // touch swipe
       let tx = 0;
       track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
       track.addEventListener('touchend',   e => {
-        let dx = e.changedTouches[0].clientX - tx;
+        const dx = e.changedTouches[0].clientX - tx;
         if (dx < -40 && current < total-1) goTo(current+1);
         if (dx >  40 && current > 0)       goTo(current-1);
       });
@@ -1315,8 +1403,8 @@
     <div class="directiva__header">
       <div class="directiva__header-line"></div>
       <div class="directiva__header-text">
-        <h2 class="directiva__title">DIRECTIVA</h2>
-        <p class="directiva__sub">FRATERNOS SEREMOS SIEMPRE</p>
+        <h2 class="directiva__title" data-i18n="dir.title">DIRECTIVA</h2>
+        <p class="directiva__sub" data-i18n="dir.sub">FRATERNOS SEREMOS SIEMPRE</p>
       </div>
       <div class="directiva__header-line"></div>
     </div>
@@ -1326,91 +1414,73 @@
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <div class="dir__img-placeholder">
-            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
-              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <img class="dir__img" src="../img/New%20folder/persona%201.jpeg" alt="Javier Pagán Dávila"/>
         </div>
-        <p class="dir__name">Javier "Vivo"<br>Pagán Dávila</p>
-        <p class="dir__role">Capítulo</p>
+        <p class="dir__name">Javier "Vier"<br>Pagán Dávila</p>
+        <p class="dir__role" data-i18n="dir.role1">Capítulo</p>
         <div class="dir__desc" id="desc1">
-          <p>Hermano fundador y pilar de nuestra comunidad. Su liderazgo y dedicación han forjado el camino de nuestra fraternidad en Florida.</p>
+          <p><strong>Capítulo Pasivo Alpha Alpha</strong><br>Roberto Garcés, Florida<br><strong>PHI ZETA CHI</strong></p>
+          <p>En la vida no existen las casualidades; cada encuentro y cada paso forman parte de un propósito mayor. Nuestra estancia en este plano es breve, y por ello asumimos como norte el amor, expresado a través del respeto, la empatía y el servicio hacia los demás.</p>
+          <p>Como Canciller del Capítulo Pasivo Alpha Alpha, reafirmo que nuestros pilares se sostienen en el respeto al ser humano y a sus procesos, en la vocación de dar sin esperar, y en el compromiso de formar líderes que impacten positivamente a sus familias y comunidades.</p>
+          <p><em>"Tu vida habla de ti."</em></p>
+          <p>Bajo esta premisa, somos un grupo de hombres auténticos, con virtudes y desafíos, pero unidos por una voluntad firme de servir, colaborar y crecer juntos.</p>
+          <p>Con fe y gratitud, continuamos nuestro camino, confiando en que Dios nos guía y bendice en cada paso.</p>
+          <p><strong>Fraternos Seremos Siempre.</strong></p>
+          <p>— Javier "Vier" Pagán Dávila</p>
         </div>
-        <button class="dir__btn" onclick="toggleDesc('desc1', this)">Ver Más ▾</button>
+        <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc1', this)">Ver Más ▾</button>
       </div>
 
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <div class="dir__img-placeholder">
-            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
-              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <img class="dir__img" src="../img/New%20folder/persona%202.jpeg" alt="Ricardo Delgado"/>
         </div>
         <p class="dir__name">Ricardo<br>Delgado</p>
-        <p class="dir__role">Vice Presidente</p>
+        <p class="dir__role" data-i18n="dir.role2">Vice Presidente</p>
         <div class="dir__desc" id="desc2">
           <p>Comprometido con el crecimiento fraternal y el servicio comunitario. Representa los valores de Phi Zeta Chi con orgullo.</p>
         </div>
-        <button class="dir__btn" onclick="toggleDesc('desc2', this)">Ver Más ▾</button>
+        <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc2', this)">Ver Más ▾</button>
       </div>
 
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <div class="dir__img-placeholder">
-            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
-              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <img class="dir__img" src="../img/New%20folder/persona%203%20(2).jpeg" alt="Severino Colón"/>
         </div>
         <p class="dir__name">Severino<br>Colón</p>
-        <p class="dir__role">Secretario</p>
+        <p class="dir__role" data-i18n="dir.role3">Secretario</p>
         <div class="dir__desc" id="desc3">
           <p>Guardián de nuestra historia y memoria fraternal. Su precisión y dedicación mantienen viva la esencia de nuestra organización.</p>
         </div>
-        <button class="dir__btn" onclick="toggleDesc('desc3', this)">Ver Más ▾</button>
+        <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc3', this)">Ver Más ▾</button>
       </div>
 
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <div class="dir__img-placeholder">
-            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
-              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <img class="dir__img" src="../img/New%20folder/persona%204.jpeg" alt="Angel Torres Jr."/>
         </div>
         <p class="dir__name">Angel Torres Jr.<br>"Luigi"</p>
-        <p class="dir__role">Tesorero</p>
+        <p class="dir__role" data-i18n="dir.role4">Tesorero</p>
         <div class="dir__desc" id="desc4">
           <p>Responsable de la integridad financiera de nuestra fraternidad. Su transparencia y compromiso son ejemplo para todos los hermanos.</p>
         </div>
-        <button class="dir__btn" onclick="toggleDesc('desc4', this)">Ver Más ▾</button>
+        <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc4', this)">Ver Más ▾</button>
       </div>
 
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <div class="dir__img-placeholder">
-            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
-              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <img class="dir__img" src="../img/New%20folder/persona%205.jpeg" alt="Carlos Cisneros"/>
         </div>
         <p class="dir__name">Carlos Cisneros<br>"Logi"</p>
-        <p class="dir__role">Presidente</p>
+        <p class="dir__role" data-i18n="dir.role5">Presidente</p>
         <div class="dir__desc" id="desc5">
           <p>Líder visionario de nuestra fraternidad. Su compromiso con la hermandad y el impacto comunitario guía cada paso de nuestra misión.</p>
         </div>
-        <button class="dir__btn" onclick="toggleDesc('desc5', this)">Ver Más ▾</button>
+        <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc5', this)">Ver Más ▾</button>
       </div>
 
     </div>
@@ -1474,14 +1544,21 @@
       margin-top: 4px;
     }
 
-    /* Grid — 5 columns on mobile */
+    /* Grid — 2 columnas mobile, 5to centrado */
     .directiva__grid {
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      padding: 0 10px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 16px;
+      padding: 0 20px;
+    }
+
+    /* 5to miembro centrado */
+    .dir__card:last-child {
+      grid-column: 1 / -1;
+      width: 50%;
+      margin: 0 auto;
     }
 
     /* Card */
@@ -1489,16 +1566,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
     }
 
     .dir__img-wrap {
       width: 100%;
       aspect-ratio: 3/4;
-      border-radius: 6px;
+      border-radius: 10px;
       overflow: hidden;
-      border: 1px solid rgba(201,168,76,0.3);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.6), 0 0 12px rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.35);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.7), 0 0 16px rgba(201,168,76,0.1);
       background: #120800;
       position: relative;
     }
@@ -1513,27 +1590,37 @@
     }
 
     .dir__img-placeholder svg {
-      width: 65%;
+      width: 50%;
       opacity: 0.65;
+    }
+
+    .dir__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
     }
 
     .dir__name {
       font-family: 'Cinzel', serif;
-      font-size: 7px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--gold-light);
       text-align: center;
-      line-height: 1.3;
-      letter-spacing: 0.2px;
+      line-height: 1.35;
+      letter-spacing: 0.5px;
     }
 
     .dir__role {
       font-family: 'Lato', sans-serif;
-      font-size: 6.5px;
+      font-size: 10px;
       color: rgba(240,200,100,0.7);
       text-align: center;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      margin-top: -4px;
     }
 
     /* Expandable description */
@@ -1542,7 +1629,7 @@
       overflow: hidden;
       transition: max-height 0.4s ease, opacity 0.3s ease;
       opacity: 0;
-      padding: 0 2px;
+      padding: 0 4px;
     }
 
     .dir__desc.open {
@@ -1552,11 +1639,11 @@
 
     .dir__desc p {
       font-family: 'Lato', sans-serif;
-      font-size: 7px;
+      font-size: 12px;
       color: rgba(255,240,200,0.8);
       text-align: center;
-      line-height: 1.5;
-      padding-top: 4px;
+      line-height: 1.6;
+      padding-top: 6px;
     }
 
     .dir__btn {
@@ -1564,14 +1651,13 @@
       border: 1px solid rgba(201,168,76,0.4);
       color: var(--gold);
       font-family: 'Lato', sans-serif;
-      font-size: 7px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      padding: 4px 6px;
-      border-radius: 3px;
+      letter-spacing: 1px;
+      padding: 7px 16px;
+      border-radius: 4px;
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
-      white-space: nowrap;
     }
 
     .dir__btn:hover,
@@ -1672,13 +1758,251 @@
   </script>
 
   
+  <!-- ===== OBJETIVOS ===== -->
+  <section class="objetivos" id="objetivos">
+    <div class="obj__header">
+      <div class="obj__header-line"></div>
+      <div class="obj__header-text">
+        <p class="obj__eyebrow">&#9670; CAPÍTULO ALPHA ALPHA &#9670;</p>
+        <h2 class="obj__title" data-i18n="obj.title">OBJETIVOS, METAS<br><em>&amp; IMPACTO</em></h2>
+      </div>
+      <div class="obj__header-line"></div>
+    </div>
+
+    <div class="obj__list">
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">01</span>
+          <span class="obj__label" data-i18n="obj.label1">Conexión e Integración Comunitaria</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body1">
+          <p>Servir como un canal dinámico de comunicación que mantenga un diálogo constante entre nuestros hermanos fraternos y la comunidad. Nos esforzamos para que cada actividad sea una oportunidad de integración, donde el servicio social y la vida fraternal se fusionen en un esfuerzo único y unificado.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">02</span>
+          <span class="obj__label" data-i18n="obj.label2">Desarrollo de Liderazgo para el Bien Común</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body2">
+          <p>Identificar y cultivar líderes íntegros que apliquen nuestros valores fraternales para servir tanto a nuestra organización como a las necesidades apremiantes de la sociedad civil.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">03</span>
+          <span class="obj__label" data-i18n="obj.label3">Expansión y Crecimiento Fraternal</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body3">
+          <p>Gestionar un modelo de reclutamiento innovador que permita a nuevos talentos integrarse como Fraternos Honorarios, brindándoles un camino sólido y regulado de un año para convertirse en Fraternos Bonafide plenamente comprometidos.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">04</span>
+          <span class="obj__label" data-i18n="obj.label4">Transparencia e Impacto Visual</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body4">
+          <p>Aprovechar los recursos multimedia —como foros y videos— para documentar y compartir nuestra historia en tiempo real, permitiendo que el mundo sea testigo de nuestra confraternización interna y de nuestras misiones de impacto social.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">&#9670;</span>
+          <span class="obj__label" data-i18n="obj.label5">Nuestras Metas — La Hoja de Ruta del Impacto</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body5">
+          <p><strong>Crecimiento de Matrícula:</strong> Fortalecer nuestra base de miembros anualmente atrayendo perfiles que aporten valor y pasión a nuestro Capítulo mediante el reclutamiento activo.</p>
+          <p><strong>Alianzas y Voluntariado:</strong> Consolidar una red robusta de voluntarios comunitarios y establecer alianzas estratégicas con organizaciones afines para ampliar nuestro alcance.</p>
+          <p><strong>Impacto Generacional:</strong> Ejecutar programas creativos de alto impacto diseñados específicamente para comunidades de niños, jóvenes y adultos en situaciones vulnerables.</p>
+          <p><strong>Sostenibilidad y Alcance Económico:</strong> Incrementar la recaudación de fondos y la adquisición de recursos, ampliando nuestra capacidad para responder a las necesidades de la comunidad al máximo de nuestras posibilidades.</p>
+          <p><strong>Participación Activa:</strong> Lograr un incremento anual del 20% en la asistencia y participación de nuestros fraternos en reuniones virtuales y eventos oficiales mediante promociones creativas y herramientas digitales.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">&#9670;</span>
+          <span class="obj__label" data-i18n="obj.label6">Desarrollo Interno y Confraternización</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body6">
+          <p>Nuestras actividades internas son de inmenso valor e interés para nuestra membresía, sirviendo como un pilar fundamental de nuestra integración. Los eventos clave incluyen nuestra Celebración de Navidad, Retiro de Verano, Asamblea General y diversos encuentros de confraternización que fortalecen nuestros lazos.</p>
+        </div>
+      </div>
+
+      <div class="obj__item">
+        <button class="obj__toggle" onclick="toggleObj(this)">
+          <span class="obj__num">&#9670;</span>
+          <span class="obj__label" data-i18n="obj.label7">¿Por Qué Somos Diferentes?</span>
+          <span class="obj__arrow">&#9660;</span>
+        </button>
+        <div class="obj__body" data-i18n="obj.body7">
+          <p>Buscamos el equilibrio perfecto: la mística profunda de nuestra fraternidad combinada con la eficiencia de una asociación sin fines de lucro multigeneracional.</p>
+          <p>A través de la innovación y el servicio comunitario, el Capítulo Alpha Alpha ha escrito con orgullo su historia en la Florida desde el año 2003.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .objetivos {
+      background: linear-gradient(180deg, #0a0500 0%, #120800 50%, #0a0500 100%);
+      padding: 48px 0 56px;
+    }
+
+    .obj__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px;
+      margin-bottom: 32px;
+    }
+
+    .obj__header-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+
+    .obj__header-text { text-align: center; flex-shrink: 0; }
+
+    .obj__eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: rgba(201,168,76,0.6);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .obj__title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(16px, 5vw, 24px);
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      line-height: 1.25;
+      text-shadow: 0 0 30px rgba(201,168,76,0.4);
+    }
+
+    .obj__title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .obj__list {
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .obj__item {
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .obj__toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .obj__toggle:hover,
+    .obj__toggle.open {
+      background: rgba(201,168,76,0.06);
+    }
+
+    .obj__num {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+
+    .obj__label {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.5px;
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .obj__arrow {
+      font-size: 10px;
+      color: rgba(201,168,76,0.6);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .obj__toggle.open .obj__arrow { transform: rotate(180deg); }
+
+    .obj__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 18px;
+    }
+
+    .obj__body.open {
+      max-height: 600px;
+      padding: 0 18px 18px;
+    }
+
+    .obj__body p {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: rgba(255,235,185,0.8);
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+
+    .obj__body p:last-child { margin-bottom: 0; }
+  </style>
+
+  <script>
+    function toggleObj(btn) {
+      const body = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      btn.classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+    }
+  </script>
+
   <section class="gallery" id="galeria">
 
     <div class="gallery__header">
       <div class="gallery__header-line"></div>
       <div class="gallery__header-text">
-        <p class="gallery__label">NUESTROS MOMENTOS</p>
-        <h2 class="gallery__title">Galería</h2>
+        <p class="gallery__label" data-i18n="gallery.label">NUESTROS MOMENTOS</p>
+        <h2 class="gallery__title" data-i18n="gallery.title">Galería</h2>
       </div>
       <div class="gallery__header-line"></div>
     </div>
@@ -2062,8 +2386,8 @@
 
       
       <div class="historia__text">
-        <p class="historia__eyebrow">&#9670; DOCUMENTO OFICIAL &#9670;</p>
-        <h2 class="historia__title">Nuestra<br><em>Carta Fundacional</em></h2>
+        <p class="historia__eyebrow" data-i18n="hist.eyebrow">&#9670; DOCUMENTO OFICIAL &#9670;</p>
+        <h2 class="historia__title" data-i18n="hist.title">Nuestra<br><em>Carta Fundacional</em></h2>
         <div class="historia__rule"></div>
         <p class="historia__body">
           El <strong>8 de junio de 2003</strong>, la Honorable Fraternidad
@@ -2086,7 +2410,7 @@
               <line x1="9" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
           </span>
-          Ver Carta Fundacional
+          <span data-i18n="hist.btn">Ver Carta Fundacional</span>
         </button>
       </div>
 
@@ -2148,15 +2472,15 @@
         <div class="pdf-modal__header">
           <p class="pdf-modal__title">Carta Fundacional — Capítulo Alpha Alpha</p>
           <div class="pdf-modal__actions">
-            <a href="Capitulo_Alpha_Alpha_Orlando_.pdf" download class="pdf-modal__download">
+            <a href="Capitulo%20Alpha%20Alpha%20Orlando%20.pdf" download="Carta Fundacional Alpha Alpha.pdf" class="pdf-modal__download">
               <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              Descargar
+              <span data-i18n="hist.download">Descargar</span>
             </a>
             <button class="pdf-modal__close" id="closePdfBtn">&#10005;</button>
           </div>
         </div>
         <div class="pdf-modal__viewer">
-          <iframe src="Capitulo_Alpha_Alpha_Orlando_.pdf" 
+          <iframe src="Capitulo%20Alpha%20Alpha%20Orlando%20.pdf"
                   title="Carta Fundacional Phi Zeta Chi"
                   class="pdf-modal__iframe">
           </iframe>
@@ -2594,7 +2918,7 @@
       <div class="unirme__header-line"></div>
       <div class="unirme__header-text">
         <p class="unirme__eyebrow">&#9670; FRATERNIDAD &#9670;</p>
-        <h2 class="unirme__title">¿Cómo Unirme?</h2>
+        <h2 class="unirme__title" data-i18n="join.title">¿Cómo Unirme?</h2>
       </div>
       <div class="unirme__header-line"></div>
     </div>
@@ -3112,7 +3436,7 @@ ${fraternoLinea}
         </div>
       </div>
       <div class="footer__rule"></div>
-      <p class="footer__motto">Fraternos Seremos Siempre</p>
+      <p class="footer__motto" data-i18n="footer.motto">Fraternos Seremos Siempre</p>
     </div>
 
     <div class="footer__contact">
@@ -3127,7 +3451,7 @@ ${fraternoLinea}
     </div>
 
     <div class="footer__bottom">
-      <p class="footer__copy">&copy; 2026 Phi Zeta Chi · Alpha Alpha Florida. Todos los derechos reservados.</p>
+      <p class="footer__copy" data-i18n="footer.copy">&copy; 2026 Phi Zeta Chi · Alpha Alpha Florida. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -3293,6 +3617,160 @@ ${fraternoLinea}
         mobileMenu.classList.remove('open');
       });
     });
+  </script>
+
+
+  <style>
+    .navbar__lang {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .navbar__lang:hover {
+      background: rgba(201,168,76,0.12);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+  </style>
+
+  <script>
+  (function() {
+    const i18n = {
+      es: {
+        'nav.home': 'Inicio',
+        'nav.about': 'Nosotros',
+        'nav.gallery': 'Galería',
+        'nav.events': 'Eventos',
+        'nav.cta': 'Únete',
+        'hero.subtitle': 'Cap. Pasivo Alpha Alpha',
+        'hero.location': 'Roberto Garces, FL.',
+        'hero.tagline': 'Impactando Nuestras Comunidades',
+        'uh.btn': '¿Qué es United Hearts?',
+        'uh.p1': '<strong>United Hearts – Hope for All</strong> es la división de contacto comunitario y ayuda humanitaria del Capítulo Pasivo Alpha Alpha – Roberto Garcés, Florida, de la Fraternidad PHI ZETA CHI.',
+        'uh.p2': 'Su propósito es canalizar esfuerzos y recursos en apoyo a las poblaciones más vulnerables.',
+        'uh.p3': 'Esta iniciativa integra a la fraternidad, la comunidad y organizaciones sin fines de lucro bajo un mismo objetivo: servir y generar un impacto real en quienes más lo necesitan.',
+        'uh.p4': 'United Hearts promueve la participación abierta. Cualquier persona puede unirse de manera voluntaria o contribuir mediante donaciones, apoyando así la continuidad de nuestras labores.',
+        'uh.closing': 'Juntos logramos más.',
+        'events.title': 'Próximos Eventos',
+        'events.card1': 'CONVENCIÓN 2026',
+        'events.card2': 'PHI ZETA FL.<br>FAMILY HOMECOMING',
+        'events.card3': 'JORNADA COMUNITARIA',
+        'events.loc1': 'Aguadilla, PR',
+        'events.loc2': 'Florida',
+        'events.tbc': 'Por confirmar',
+        'events.details': 'Ver Detalles &rsaquo;',
+        'dir.title': 'DIRECTIVA',
+        'dir.sub': 'FRATERNOS SEREMOS SIEMPRE',
+        'dir.role1': 'Capítulo',
+        'dir.role2': 'Vice Presidente',
+        'dir.role3': 'Secretario',
+        'dir.role4': 'Tesorero',
+        'dir.role5': 'Presidente',
+        'dir.more': 'Ver Más ▾',
+        'gallery.label': 'NUESTROS MOMENTOS',
+        'gallery.title': 'Galería',
+        'obj.title': 'OBJETIVOS, METAS<br><em>&amp; IMPACTO</em>',
+        'obj.label1': 'Conexión e Integración Comunitaria',
+        'obj.label2': 'Desarrollo de Liderazgo para el Bien Común',
+        'obj.label3': 'Expansión y Crecimiento Fraternal',
+        'obj.label4': 'Transparencia e Impacto Visual',
+        'obj.label5': 'Nuestras Metas — La Hoja de Ruta del Impacto',
+        'obj.label6': 'Desarrollo Interno y Confraternización',
+        'obj.label7': '¿Por Qué Somos Diferentes?',
+        'hist.eyebrow': '&#9670; DOCUMENTO OFICIAL &#9670;',
+        'hist.title': 'Nuestra<br><em>Carta Fundacional</em>',
+        'hist.btn': 'Ver Carta Fundacional',
+        'hist.download': 'Descargar',
+        'join.title': '¿Cómo Unirme?',
+        'footer.motto': 'Fraternos Seremos Siempre',
+        'footer.copy': '&copy; 2026 Phi Zeta Chi &middot; Alpha Alpha Florida. Todos los derechos reservados.',
+      },
+      en: {
+        'nav.home': 'Home',
+        'nav.about': 'About',
+        'nav.gallery': 'Gallery',
+        'nav.events': 'Events',
+        'nav.cta': 'Join Us',
+        'hero.subtitle': 'Passive Chapter Alpha Alpha',
+        'hero.location': 'Roberto Garces, FL.',
+        'hero.tagline': 'Impacting Our Communities',
+        'uh.btn': 'What is United Hearts?',
+        'uh.p1': '<strong>United Hearts – Hope for All</strong> is the community outreach and humanitarian aid division of Passive Chapter Alpha Alpha – Roberto Garcés, Florida, of the PHI ZETA CHI Fraternity.',
+        'uh.p2': 'Its purpose is to channel efforts and resources in support of the most vulnerable populations.',
+        'uh.p3': 'This initiative brings together the fraternity, the community, and nonprofit organizations under one shared goal: to serve and create a real impact for those who need it most.',
+        'uh.p4': 'United Hearts promotes open participation. Anyone can join as a volunteer or contribute through donations, supporting the continuity of our work.',
+        'uh.closing': 'Together we achieve more.',
+        'events.title': 'Upcoming Events',
+        'events.card1': 'CONVENTION 2026',
+        'events.card2': 'PHI ZETA FL.<br>FAMILY HOMECOMING',
+        'events.card3': 'COMMUNITY SERVICE DAY',
+        'events.loc1': 'Aguadilla, PR',
+        'events.loc2': 'Florida',
+        'events.tbc': 'To be confirmed',
+        'events.details': 'View Details &rsaquo;',
+        'dir.title': 'BOARD OF DIRECTORS',
+        'dir.sub': 'BROTHERS WE SHALL ALWAYS BE',
+        'dir.role1': 'Chapter',
+        'dir.role2': 'Vice President',
+        'dir.role3': 'Secretary',
+        'dir.role4': 'Treasurer',
+        'dir.role5': 'President',
+        'dir.more': 'Read More ▾',
+        'gallery.label': 'OUR MOMENTS',
+        'gallery.title': 'Gallery',
+        'obj.title': 'OBJECTIVES, GOALS<br><em>&amp; IMPACT</em>',
+        'obj.label1': 'Connection and Community Integration',
+        'obj.label2': 'Leadership Development for the Common Good',
+        'obj.label3': 'Expansion and Fraternal Growth',
+        'obj.label4': 'Transparency and Visual Impact',
+        'obj.label5': 'Our Goals — The Impact Roadmap',
+        'obj.label6': 'Internal Development and Fellowship',
+        'obj.label7': 'Why Are We Different?',
+        'hist.eyebrow': '&#9670; OFFICIAL DOCUMENT &#9670;',
+        'hist.title': 'Our<br><em>Founding Charter</em>',
+        'hist.btn': 'View Founding Charter',
+        'hist.download': 'Download',
+        'join.title': 'How to Join?',
+        'footer.motto': 'Brothers We Shall Always Be',
+        'footer.copy': '&copy; 2026 Phi Zeta Chi &middot; Alpha Alpha Florida. All rights reserved.',
+      }
+    };
+
+    let currentLang = 'es';
+
+    window.toggleLang = function() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      const btn = document.getElementById('langToggle');
+      btn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+      applyLang(currentLang);
+    };
+
+    function applyLang(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (i18n[lang][key] !== undefined) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+      // Keep dir__btn text correct when open/closed state
+      document.querySelectorAll('.dir__btn').forEach(btn => {
+        if (!btn.classList.contains('open')) {
+          btn.textContent = lang === 'es' ? 'Ver Más ▾' : 'Read More ▾';
+        } else {
+          btn.textContent = lang === 'es' ? 'Ver Menos ▴' : 'Read Less ▴';
+        }
+      });
+    }
+  })();
   </script>
 
 </body>
