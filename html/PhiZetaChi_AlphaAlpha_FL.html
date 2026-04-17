@@ -1,0 +1,3299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phi Zeta Chi – Alpha Alpha FL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:       #c9a84c;
+      --gold-light: #f0d070;
+      --gold-dark:  #8a6a1e;
+      --brown-dark: #1a0f00;
+      --brown-mid:  #2e1a00;
+      --white:      #ffffff;
+      --green-pzx:  #2a5c2a;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #0a0500;
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, #1a0d00 0%, #2c1a00 100%);
+      border-bottom: 1px solid var(--gold-dark);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .navbar__logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 10px rgba(201,168,76,0.4);
+      object-fit: cover;
+    }
+
+    .navbar__logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .navbar__logo-title {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .navbar__logo-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 8px;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* oculto en mobile, visible solo en desktop */
+    .navbar__divider,
+    .navbar__links,
+    .navbar__spacer,
+    .navbar__cta {
+      display: none;
+    }
+
+    .navbar__hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+
+    .navbar__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .navbar__hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .navbar__hamburger.active span:nth-child(2) { opacity: 0; }
+    .navbar__hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (min-width: 768px) {
+      .navbar__divider { display: block; }
+      .navbar__links { display: flex; align-items: center; gap: 0; list-style: none; }
+      .navbar__links a {
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        color: rgba(255,255,255,0.85);
+        text-decoration: none;
+        padding: 0 14px;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+        border-right: 1px solid rgba(201,168,76,0.3);
+      }
+      .navbar__links li:last-child a { border-right: none; }
+      .navbar__links a:hover { color: var(--gold-light); }
+      .navbar__spacer { display: block; flex: 1; }
+      .navbar__cta {
+        display: inline-block;
+        background: linear-gradient(135deg, #c9a84c, #a07828);
+        color: var(--brown-dark);
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: filter 0.2s;
+      }
+      .navbar__cta:hover { filter: brightness(1.15); }
+      .navbar__hamburger { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 80px;
+    }
+
+    /* Photo background */
+    .hero__photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('../imagenes%202/hero.png');
+      background-size: cover;
+      background-position: center top;
+      filter: brightness(0.75);
+    }
+
+    /* Golden bokeh/sparkle gradient overlay */
+    .hero__overlay-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%,
+        rgba(180, 110, 10, 0.88) 0%,
+        rgba(130, 80, 5, 0.75) 30%,
+        rgba(60, 30, 0, 0.55) 60%,
+        transparent 85%);
+    }
+
+    /* ✨ TRANSITION GRADIENT hero → donation */
+    .hero__bottom-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 260px;
+      background: linear-gradient(
+        to bottom,
+        transparent                       0%,
+        rgba(160, 95,   5,  0.25)        18%,
+        rgba(140, 80,   0,  0.55)        38%,
+        rgba(100, 60,   0,  0.80)        55%,
+        rgba(200, 170, 100, 0.90)        72%,
+        rgba(240, 225, 195, 0.97)        87%,
+        rgba(255, 255, 255, 1.00)       100%
+      );
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Sparkle/particle canvas */
+    .hero__sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Content */
+    .hero__content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .hero__emblem {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 24px rgba(201,168,76,0.7));
+      animation: floatEmblem 4s ease-in-out infinite;
+    }
+
+    @keyframes floatEmblem {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero__title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(32px, 8vw, 56px);
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 4px;
+      text-shadow:
+        0 2px 8px rgba(0,0,0,0.8),
+        0 0 40px rgba(201,168,76,0.5);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero__subtitle-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+    }
+
+    .hero__subtitle-line::before,
+    .hero__subtitle-line::after {
+      content: '—';
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .hero__subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(11px, 3vw, 15px);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+    }
+
+    .hero__location {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(9px, 2.5vw, 12px);
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,220,140,0.85);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+      margin-bottom: 16px;
+    }
+
+    .hero__tagline-wrap {
+      border-top: 1px solid rgba(201,168,76,0.4);
+      border-bottom: 1px solid rgba(201,168,76,0.4);
+      padding: 10px 24px;
+    }
+
+    .hero__tagline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(11px, 3vw, 15px);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+    }
+
+    /* ===== Emblem SVG inline ===== */
+  </style>
+</head>
+<body>
+
+  
+  <nav class="navbar">
+    <a href="#" class="navbar__logo">
+      <img class="navbar__logo-icon" src="../imagenes%202/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).png" alt="ΦZX"/>
+      <div class="navbar__logo-text">
+        <span class="navbar__logo-title">Phi Zeta Chi</span>
+        <span class="navbar__logo-sub">Alpha Alpha FL</span>
+      </div>
+    </a>
+
+    <div class="navbar__divider"></div>
+
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+    </ul>
+
+    <div class="navbar__spacer"></div>
+
+    <a href="#unirme" class="navbar__cta">Únete</a>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" id="mobileMenu">
+    <a href="#hero" class="navbar__mobile-link">Inicio</a>
+    <a href="#nosotros" class="navbar__mobile-link">Nosotros</a>
+    <a href="#galeria" class="navbar__mobile-link">Galería</a>
+    <a href="#eventos" class="navbar__mobile-link">Eventos</a>
+    <a href="#unirme" class="navbar__mobile-link navbar__mobile-cta">Únete</a>
+  </div>
+
+  
+  <section class="hero" id="hero">
+    <div class="hero__photo"></div>
+    <div class="hero__overlay-gradient"></div>
+    <div class="hero__bottom-fade"></div>
+
+    
+    <canvas class="hero__sparkles" id="sparkleCanvas"></canvas>
+
+    <div class="hero__content">
+      
+      <img class="hero__emblem" src="../imagenes%202/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).png" alt="Phi Zeta Chi Emblema"/>
+
+      <h1 class="hero__title">Phi Zeta Chi</h1>
+
+      <div class="hero__subtitle-line">
+        <span class="hero__subtitle">Cap. Pasivo Alpha Alpha</span>
+      </div>
+
+      <p class="hero__location">Roberto Garces, FL.</p>
+
+      <div class="hero__tagline-wrap">
+        <p class="hero__tagline">Impactando Nuestras Comunidades</p>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="donation">
+    
+    <div class="donation__card">
+      <div class="donation__left">
+        
+        <div class="donation__heart-wrap">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="donation__heart-svg">
+            <defs>
+              <linearGradient id="heartOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2e8b2e"/>
+                <stop offset="50%" stop-color="#f5c800"/>
+                <stop offset="100%" stop-color="#e05a00"/>
+              </linearGradient>
+              <linearGradient id="heartInner" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3aaa3a"/>
+                <stop offset="100%" stop-color="#e07000"/>
+              </linearGradient>
+            </defs>
+            
+            <path d="M100,170 C60,145 20,115 20,75 C20,50 40,32 65,32 C80,32 92,40 100,52 C108,40 120,32 135,32 C160,32 180,50 180,75 C180,115 140,145 100,170 Z"
+                  fill="none" stroke="url(#heartOuter)" stroke-width="10" opacity="0.9"/>
+            
+            <path d="M100,155 C68,133 35,108 35,75 C35,55 50,40 70,40 C83,40 94,48 100,58 C106,48 117,40 130,40 C150,40 165,55 165,75 C165,108 132,133 100,155 Z"
+                  fill="none" stroke="#f5c800" stroke-width="7" opacity="0.7"/>
+            
+            <path d="M100,138 C78,120 52,100 52,76 C52,60 63,50 75,50 C85,50 95,57 100,66 C105,57 115,50 125,50 C137,50 148,60 148,76 C148,100 122,120 100,138 Z"
+                  fill="url(#heartInner)" opacity="0.85"/>
+            
+            <g transform="translate(100,100)">
+              <ellipse cx="-10" cy="5" rx="22" ry="16" fill="#f5a623" transform="rotate(-15)"/>
+              <ellipse cx="10" cy="5" rx="22" ry="16" fill="#e8941a" transform="rotate(15)"/>
+              
+              <rect x="-28" y="-8" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -24 -5)"/>
+              <rect x="-20" y="-12" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -16 -9)"/>
+              <rect x="-10" y="-14" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -6 -11)"/>
+              <rect x="12" y="-14" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 16 -11)"/>
+              <rect x="20" y="-11" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 24 -8)"/>
+              <rect x="26" y="-6" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 30 -3)"/>
+            </g>
+            
+            <circle cx="72"  cy="28" r="12" fill="#2e8b2e"/>
+            <circle cx="100" cy="22" r="12" fill="#f5c800"/>
+            <circle cx="128" cy="28" r="12" fill="#e05a00"/>
+            
+            <path d="M64,40 Q72,50 80,48" fill="none" stroke="#2e8b2e" stroke-width="6" stroke-linecap="round"/>
+            <path d="M92,34 Q100,44 108,34" fill="none" stroke="#f5c800" stroke-width="6" stroke-linecap="round"/>
+            <path d="M120,40 Q128,50 136,48" fill="none" stroke="#e05a00" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        
+        <div class="donation__brand">
+          <p class="donation__brand-name">UNITED HEARTS</p>
+          <p class="donation__brand-sub">— HOPE FOR ALL —</p>
+        </div>
+      </div>
+
+      <div class="donation__right">
+        <p class="donation__title-label">Donaciones a</p>
+        <h2 class="donation__title">UNITED HEARTS –<br>Hope For All</h2>
+
+        <div class="donation__info-row">
+          <div class="donation__phone-amounts">
+            <p class="donation__phone">
+              <span class="donation__phone-icon">📞</span>
+              <strong>(941) 321-9339</strong>
+            </p>
+            <div class="donation__divider-h"></div>
+            <p class="donation__amounts"><span class="donation__amounts-big">$5, $15, $20</span> <span class="donation__or-more">or more</span></p>
+          </div>
+          <div class="donation__vdivider"></div>
+          <div class="donation__treasurer">
+            <p class="donation__treasurer-label">Tesorero</p>
+            <p class="donation__treasurer-name">Angel Torres Jr.<br><strong>"Luigi"</strong></p>
+          </div>
+        </div>
+
+        
+        <div class="donation__payments">
+          <button class="pay-btn pay-zelle">
+            <span style="font-style:italic;font-weight:700;letter-spacing:-0.5px">Ƶelle</span>
+          </button>
+          <button class="pay-btn pay-paypal">
+            <span style="font-weight:800;font-size:13px">&#80;</span>
+            <span style="font-weight:400;font-size:11px">PayPal</span>
+          </button>
+          <button class="pay-btn pay-cashapp">
+            <span style="font-weight:700;font-size:13px">$ Cash App</span>
+          </button>
+          <button class="pay-btn pay-venmo">
+            <span style="font-weight:400;letter-spacing:1px">venmo</span>
+          </button>
+          <button class="pay-btn pay-giro">
+            <span style="font-size:10px;font-weight:700;line-height:1.2;text-align:center">GIRO<br>POSTAL</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="donation__waves" style="position:relative;">
+      <canvas id="donationCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;"></canvas>
+    </div>
+  </section>
+
+  <style>
+    /* ===== DONATION SECTION ===== */
+    .donation {
+      background: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .donation__card {
+      background: transparent;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 28px 18px 24px;
+      gap: 16px;
+    }
+
+    /* LEFT */
+    .donation__left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 130px;
+    }
+
+    .donation__heart-wrap {
+      width: 110px;
+      height: 110px;
+    }
+
+    .donation__heart-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .donation__brand {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .donation__brand-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      color: #1a3a6b;
+      letter-spacing: 0.5px;
+    }
+
+    .donation__brand-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: #e05a00;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* RIGHT */
+    .donation__right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .donation__title-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #e05a00;
+      line-height: 1;
+    }
+
+    .donation__title {
+      font-family: 'Lato', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #1a3a6b;
+      line-height: 1.15;
+    }
+
+    .donation__info-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .donation__phone-amounts {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      padding-right: 12px;
+    }
+
+    .donation__phone {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #1a6b3a;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .donation__phone strong {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .donation__divider-h {
+      height: 1px;
+      background: #ccc;
+      width: 100%;
+    }
+
+    .donation__amounts {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .donation__amounts-big {
+      font-family: 'Lato', sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: #1a6b3a;
+      letter-spacing: -0.5px;
+    }
+
+    .donation__or-more {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .donation__vdivider {
+      width: 1px;
+      background: #ccc;
+      align-self: stretch;
+      margin: 0 12px;
+    }
+
+    .donation__treasurer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .donation__treasurer-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #555;
+      font-weight: 400;
+    }
+
+    .donation__treasurer-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .donation__treasurer-name strong {
+      font-weight: 700;
+    }
+
+    /* Payment buttons */
+    .donation__payments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .pay-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 7px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      transition: filter 0.15s;
+      min-width: 60px;
+    }
+
+    .pay-btn:hover { filter: brightness(1.1); }
+
+    .pay-zelle   { background: #6d1ed4; color: #fff; }
+    .pay-paypal  { background: #003087; color: #fff; gap: 3px; }
+    .pay-cashapp { background: #00c244; color: #fff; }
+    .pay-venmo   { background: #3d95ce; color: #fff; }
+    .pay-giro    { background: #e8ecf0; color: #1a1a1a; border: 1px solid #ccc; }
+
+    /* Gradient bottom — mirrors hero fade */
+    .donation__waves {
+      width: 100%;
+      height: 200px;
+      display: block;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,1.00)      0%,
+        rgba(240,225,195,0.97)     14%,
+        rgba(200,170,100,0.90)     30%,
+        rgba(140,100, 20, 0.82)    48%,
+        rgba(100, 70,  5, 0.75)    65%,
+        rgba( 60, 35,  0, 0.70)    80%,
+        rgba( 20, 10,  0, 0.92)   100%
+      );
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script>
+  new p5(function(p) {
+
+    const canvas = document.getElementById('sparkleCanvas');
+    let W, H;
+
+    let motes  = [];   // tiny drifting dust
+    let glints = [];   // 4-point micro-stars
+
+    // subtle cool-gold palette
+    const C = [
+      (a) => `rgba(220,195,100,${a})`,   // warm champagne
+      (a) => `rgba(200,220,180,${a})`,   // pale green-gold
+      (a) => `rgba(240,230,180,${a})`,   // ivory
+      (a) => `rgba(180,210,170,${a})`,   // fresh sage-gold
+    ];
+
+    p.setup = function() {
+      let cnv = p.createCanvas(canvas.offsetWidth, canvas.offsetHeight);
+      cnv.parent(canvas.parentElement);
+      cnv.elt.style.position    = 'absolute';
+      cnv.elt.style.inset       = '0';
+      cnv.elt.style.width       = '100%';
+      cnv.elt.style.height      = '100%';
+      cnv.elt.style.pointerEvents = 'none';
+      cnv.elt.style.zIndex      = '6';
+      canvas.style.display      = 'none';
+      W = p.width; H = p.height;
+
+      for (let i = 0; i < 55; i++) motes.push(newMote());
+      for (let i = 0; i < 8;  i++) glints.push(newGlint());
+      p.noStroke();
+    };
+
+    p.windowResized = function() {
+      p.resizeCanvas(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight);
+      W = p.width; H = p.height;
+    };
+
+    function newMote(fromBottom) {
+      return {
+        x:       p.random(W),
+        y:       fromBottom ? H + 5 : p.random(H * 0.25, H),
+        r:       p.random(0.6, 1.8),
+        vx:      p.random(-0.06, 0.06),
+        vy:      p.random(-0.22, -0.06),
+        life:    0,
+        maxLife: p.int(p.random(220, 500)),
+        phase:   p.random(p.TWO_PI),
+        ci:      p.int(p.random(4))
+      };
+    }
+
+    function newGlint(fromBottom) {
+      return {
+        x:       p.random(W * 0.05, W * 0.95),
+        y:       fromBottom ? H + 5 : p.random(H * 0.3, H * 0.95),
+        r:       p.random(1.5, 4.5),
+        life:    0,
+        maxLife: p.int(p.random(100, 220)),
+        phase:   p.random(p.TWO_PI),
+        rot:     p.random(p.TWO_PI),
+        ci:      p.int(p.random(4))
+      };
+    }
+
+    function eio(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+    function drawMote(m) {
+      let prog  = m.life / m.maxLife;
+      let alpha = eio(prog < 0.5 ? prog * 2 : (1 - prog) * 2) * 0.38;
+      let wx    = p.sin(m.phase + m.life * 0.018) * 1.8;
+      let col   = C[m.ci];
+      // soft radial glow
+      let g = p.drawingContext.createRadialGradient(
+        m.x + wx, m.y, 0,
+        m.x + wx, m.y, m.r * 3
+      );
+      g.addColorStop(0,   col(alpha));
+      g.addColorStop(0.5, col(alpha * 0.4));
+      g.addColorStop(1,   col(0));
+      p.drawingContext.fillStyle = g;
+      p.drawingContext.beginPath();
+      p.drawingContext.arc(m.x + wx, m.y, m.r * 3, 0, Math.PI * 2);
+      p.drawingContext.fill();
+    }
+
+    function drawGlint(g_) {
+      let prog  = g_.life / g_.maxLife;
+      let alpha = eio(prog < 0.5 ? prog * 2 : (1 - prog) * 2) * 0.55;
+      let pulse = g_.r * (0.9 + 0.1 * p.sin(g_.phase + g_.life * 0.08));
+      let col   = C[g_.ci];
+      p.push();
+      p.translate(g_.x, g_.y);
+      p.rotate(g_.rot + g_.life * 0.006);
+      // 4-point star
+      p.drawingContext.fillStyle = col(alpha);
+      p.drawingContext.beginPath();
+      for (let i = 0; i < 8; i++) {
+        let ang = (i / 8) * Math.PI * 2;
+        let r_  = i % 2 === 0 ? pulse : pulse * 0.22;
+        let cx  = Math.cos(ang) * r_;
+        let cy  = Math.sin(ang) * r_;
+        i === 0 ? p.drawingContext.moveTo(cx, cy) : p.drawingContext.lineTo(cx, cy);
+      }
+      p.drawingContext.closePath();
+      p.drawingContext.fill();
+      // centre glow
+      let gg = p.drawingContext.createRadialGradient(0,0,0, 0,0, pulse);
+      gg.addColorStop(0, col(alpha * 0.9));
+      gg.addColorStop(1, col(0));
+      p.drawingContext.fillStyle = gg;
+      p.drawingContext.beginPath();
+      p.drawingContext.arc(0, 0, pulse, 0, Math.PI * 2);
+      p.drawingContext.fill();
+      p.pop();
+    }
+
+    p.draw = function() {
+      p.clear();
+
+      for (let m of motes) {
+        drawMote(m);
+        m.x += m.vx + p.sin(m.phase + m.life * 0.012) * 0.04;
+        m.y += m.vy;
+        m.life++;
+        if (m.life >= m.maxLife) Object.assign(m, newMote(true));
+      }
+
+      for (let g_ of glints) {
+        drawGlint(g_);
+        g_.life++;
+        if (g_.life >= g_.maxLife) Object.assign(g_, newGlint(true));
+      }
+    };
+
+  });
+  </script>
+
+  <script>
+  new p5(function(p) {
+    const canvas = document.getElementById('donationCanvas');
+    let W, H, motes = [], glints = [];
+
+    const C = [
+      (a) => `rgba(220,195,100,${a})`,
+      (a) => `rgba(240,230,180,${a})`,
+      (a) => `rgba(200,215,170,${a})`,
+      (a) => `rgba(255,245,200,${a})`,
+    ];
+
+    p.setup = function() {
+      let cnv = p.createCanvas(canvas.offsetWidth, canvas.offsetHeight);
+      cnv.parent(canvas.parentElement);
+      cnv.elt.style.position     = 'absolute';
+      cnv.elt.style.inset        = '0';
+      cnv.elt.style.width        = '100%';
+      cnv.elt.style.height       = '100%';
+      cnv.elt.style.pointerEvents= 'none';
+      canvas.style.display       = 'none';
+      W = p.width; H = p.height;
+      for (let i = 0; i < 30; i++) motes.push(newMote());
+      for (let i = 0; i < 4;  i++) glints.push(newGlint());
+      p.noStroke();
+    };
+
+    p.windowResized = function() {
+      p.resizeCanvas(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight);
+      W = p.width; H = p.height;
+    };
+
+    function newMote(fb) {
+      return {
+        x: p.random(W), y: fb ? H + 5 : p.random(H * 0.1, H),
+        r: p.random(0.5, 1.4), vx: p.random(-0.04, 0.04),
+        vy: p.random(-0.14, -0.04), life: 0,
+        maxLife: p.int(p.random(260, 560)),
+        phase: p.random(p.TWO_PI), ci: p.int(p.random(4))
+      };
+    }
+
+    function newGlint(fb) {
+      return {
+        x: p.random(W * 0.05, W * 0.95),
+        y: fb ? H + 5 : p.random(H * 0.2, H * 0.95),
+        r: p.random(1.0, 3.2), life: 0,
+        maxLife: p.int(p.random(120, 260)),
+        phase: p.random(p.TWO_PI),
+        rot: p.random(p.TWO_PI), ci: p.int(p.random(4))
+      };
+    }
+
+    function eio(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+    function drawMote(m) {
+      let prog = m.life / m.maxLife;
+      let a    = eio(prog < 0.5 ? prog*2 : (1-prog)*2) * 0.22;
+      let wx   = p.sin(m.phase + m.life * 0.016) * 1.5;
+      let g    = p.drawingContext.createRadialGradient(m.x+wx,m.y,0,m.x+wx,m.y,m.r*3);
+      g.addColorStop(0,   C[m.ci](a));
+      g.addColorStop(0.5, C[m.ci](a*0.4));
+      g.addColorStop(1,   C[m.ci](0));
+      p.drawingContext.fillStyle = g;
+      p.drawingContext.beginPath();
+      p.drawingContext.arc(m.x+wx, m.y, m.r*3, 0, Math.PI*2);
+      p.drawingContext.fill();
+    }
+
+    function drawGlint(g_) {
+      let prog  = g_.life / g_.maxLife;
+      let a     = eio(prog < 0.5 ? prog*2 : (1-prog)*2) * 0.30;
+      let pulse = g_.r * (0.9 + 0.1 * p.sin(g_.phase + g_.life * 0.08));
+      p.push();
+      p.translate(g_.x, g_.y);
+      p.rotate(g_.rot + g_.life * 0.005);
+      p.drawingContext.fillStyle = C[g_.ci](a);
+      p.drawingContext.beginPath();
+      for (let i = 0; i < 8; i++) {
+        let ang = (i/8)*Math.PI*2;
+        let r_  = i%2===0 ? pulse : pulse*0.2;
+        let cx  = Math.cos(ang)*r_, cy = Math.sin(ang)*r_;
+        i===0 ? p.drawingContext.moveTo(cx,cy) : p.drawingContext.lineTo(cx,cy);
+      }
+      p.drawingContext.closePath();
+      p.drawingContext.fill();
+      let gg = p.drawingContext.createRadialGradient(0,0,0,0,0,pulse);
+      gg.addColorStop(0, C[g_.ci](a*0.8));
+      gg.addColorStop(1, C[g_.ci](0));
+      p.drawingContext.fillStyle = gg;
+      p.drawingContext.beginPath();
+      p.drawingContext.arc(0,0,pulse,0,Math.PI*2);
+      p.drawingContext.fill();
+      p.pop();
+    }
+
+    p.draw = function() {
+      p.clear();
+      for (let m of motes) {
+        drawMote(m);
+        m.x += m.vx + p.sin(m.phase + m.life*0.01)*0.03;
+        m.y += m.vy; m.life++;
+        if (m.life >= m.maxLife) Object.assign(m, newMote(true));
+      }
+      for (let g_ of glints) {
+        drawGlint(g_);
+        g_.life++;
+        if (g_.life >= g_.maxLife) Object.assign(g_, newGlint(true));
+      }
+    };
+  });
+  </script>
+
+  
+  <section class="events" id="eventos">
+    <div class="events__header">
+      <div class="events__header-line"></div>
+      <h2 class="events__title">Próximos Eventos</h2>
+      <div class="events__header-line"></div>
+    </div>
+
+    <div class="events__carousel-wrap">
+      <div class="events__track" id="eventsTrack">
+
+        
+        <div class="events__group">
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Convención 2026</p>
+                <p class="events__card-loc">Aguadilla, PR</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Florida Family Homecoming 2026</p>
+                <p class="events__card-loc">Todo en Florida</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Jornadas Comunitarias</p>
+                <p class="events__card-loc">Por confirmar</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="events__group">
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Evento Próximo</p>
+                <p class="events__card-loc">Por confirmar</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Evento Próximo</p>
+                <p class="events__card-loc">Por confirmar</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="events__card">
+            <div class="events__img-wrap">
+              <div class="events__img-placeholder">
+                <svg viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="8" width="50" height="34" rx="3" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <circle cx="21" cy="21" r="5" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+                  <path d="M5 34 L18 24 L27 31 L37 20 L55 34" stroke="rgba(201,168,76,0.4)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="events__card-overlay">
+                <p class="events__card-title">Evento Próximo</p>
+                <p class="events__card-loc">Por confirmar</p>
+                <a href="#" class="events__card-btn">Ver Detalles &rsaquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      
+      <button class="events__arrow events__arrow--prev" id="evtPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="events__arrow events__arrow--next" id="evtNext" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    
+    <div class="events__dots">
+      <button class="events__dot events__dot--active" data-idx="0"></button>
+      <button class="events__dot" data-idx="1"></button>
+    </div>
+  </section>
+
+  <style>
+    /* ===== EVENTS ===== */
+    .events {
+      background: linear-gradient(180deg, #0a0500 0%, #1a0d00 100%);
+      padding: 36px 0 48px;
+    }
+
+    .events__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+
+    .events__header-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+
+    .events__title {
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      white-space: nowrap;
+      text-shadow: 0 0 20px rgba(201,168,76,0.3);
+    }
+
+    /* Carousel wrap */
+    .events__carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      padding: 0 16px;
+    }
+
+    .events__track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Each group = 3 cards side by side */
+    .events__group {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    .events__card {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .events__img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 75%;   /* 4:3 ratio */
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1e1000;
+      border: 1px solid rgba(201,168,76,0.18);
+    }
+
+    .events__img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0d00 0%, #2a1800 60%, #1a0d00 100%);
+    }
+
+    .events__img-placeholder svg {
+      width: 55%;
+      opacity: 0.6;
+    }
+
+    .events__card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.35) 55%,
+        transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px 7px;
+      gap: 3px;
+    }
+
+    .events__card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 8.5px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.25;
+      letter-spacing: 0.3px;
+    }
+
+    .events__card-loc {
+      font-family: 'Lato', sans-serif;
+      font-size: 7.5px;
+      color: rgba(240,210,120,0.85);
+      letter-spacing: 0.3px;
+    }
+
+    .events__card-btn {
+      display: inline-block;
+      margin-top: 4px;
+      background: rgba(30,15,0,0.75);
+      border: 1px solid rgba(201,168,76,0.55);
+      color: var(--gold-light);
+      font-family: 'Lato', sans-serif;
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .events__card-btn:hover {
+      background: rgba(201,168,76,0.25);
+      border-color: var(--gold-light);
+    }
+
+    /* Arrows */
+    .events__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(20,10,0,0.75);
+      border: 1px solid rgba(201,168,76,0.45);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s, border-color 0.2s;
+      padding: 0;
+    }
+
+    .events__arrow svg { width: 16px; height: 16px; }
+
+    .events__arrow:hover {
+      background: rgba(201,168,76,0.2);
+      border-color: var(--gold-light);
+    }
+
+    .events__arrow--prev { left: 2px; }
+    .events__arrow--next { right: 2px; }
+
+    .events__arrow:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    /* Dots */
+    .events__dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .events__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.25);
+      border: 1px solid rgba(201,168,76,0.4);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .events__dot--active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+  </style>
+
+  <script>
+    (function() {
+      const track   = document.getElementById('eventsTrack');
+      const btnPrev = document.getElementById('evtPrev');
+      const btnNext = document.getElementById('evtNext');
+      const dots    = document.querySelectorAll('.events__dot');
+      const total   = 2;   // 2 groups
+      let   current = 0;
+
+      function goTo(idx) {
+        current = idx;
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('events__dot--active', i === idx));
+        btnPrev.disabled = idx === 0;
+        btnNext.disabled = idx === total - 1;
+      }
+
+      btnNext.addEventListener('click', () => { if (current < total-1) goTo(current+1); });
+      btnPrev.addEventListener('click', () => { if (current > 0)       goTo(current-1); });
+      dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
+
+      // touch swipe
+      let tx = 0;
+      track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend',   e => {
+        let dx = e.changedTouches[0].clientX - tx;
+        if (dx < -40 && current < total-1) goTo(current+1);
+        if (dx >  40 && current > 0)       goTo(current-1);
+      });
+
+      goTo(0);
+    })();
+  </script>
+
+  
+  <section class="directiva" id="nosotros">
+
+    
+    <canvas id="dirCanvas" class="directiva__canvas"></canvas>
+
+    <div class="directiva__header">
+      <div class="directiva__header-line"></div>
+      <div class="directiva__header-text">
+        <h2 class="directiva__title">DIRECTIVA</h2>
+        <p class="directiva__sub">FRATERNOS SEREMOS SIEMPRE</p>
+      </div>
+      <div class="directiva__header-line"></div>
+    </div>
+
+    <div class="directiva__grid">
+
+      
+      <div class="dir__card">
+        <div class="dir__img-wrap">
+          <div class="dir__img-placeholder">
+            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="dir__name">Javier "Vivo"<br>Pagán Dávila</p>
+        <p class="dir__role">Capítulo</p>
+        <div class="dir__desc" id="desc1">
+          <p>Hermano fundador y pilar de nuestra comunidad. Su liderazgo y dedicación han forjado el camino de nuestra fraternidad en Florida.</p>
+        </div>
+        <button class="dir__btn" onclick="toggleDesc('desc1', this)">Ver Más ▾</button>
+      </div>
+
+      
+      <div class="dir__card">
+        <div class="dir__img-wrap">
+          <div class="dir__img-placeholder">
+            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="dir__name">Ricardo<br>Delgado</p>
+        <p class="dir__role">Vice Presidente</p>
+        <div class="dir__desc" id="desc2">
+          <p>Comprometido con el crecimiento fraternal y el servicio comunitario. Representa los valores de Phi Zeta Chi con orgullo.</p>
+        </div>
+        <button class="dir__btn" onclick="toggleDesc('desc2', this)">Ver Más ▾</button>
+      </div>
+
+      
+      <div class="dir__card">
+        <div class="dir__img-wrap">
+          <div class="dir__img-placeholder">
+            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="dir__name">Severino<br>Colón</p>
+        <p class="dir__role">Secretario</p>
+        <div class="dir__desc" id="desc3">
+          <p>Guardián de nuestra historia y memoria fraternal. Su precisión y dedicación mantienen viva la esencia de nuestra organización.</p>
+        </div>
+        <button class="dir__btn" onclick="toggleDesc('desc3', this)">Ver Más ▾</button>
+      </div>
+
+      
+      <div class="dir__card">
+        <div class="dir__img-wrap">
+          <div class="dir__img-placeholder">
+            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="dir__name">Angel Torres Jr.<br>"Luigi"</p>
+        <p class="dir__role">Tesorero</p>
+        <div class="dir__desc" id="desc4">
+          <p>Responsable de la integridad financiera de nuestra fraternidad. Su transparencia y compromiso son ejemplo para todos los hermanos.</p>
+        </div>
+        <button class="dir__btn" onclick="toggleDesc('desc4', this)">Ver Más ▾</button>
+      </div>
+
+      
+      <div class="dir__card">
+        <div class="dir__img-wrap">
+          <div class="dir__img-placeholder">
+            <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="24" r="13" stroke="rgba(201,168,76,0.45)" stroke-width="1.5"/>
+              <path d="M8 62 C8 46 52 46 52 62" stroke="rgba(201,168,76,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <p class="dir__name">Carlos Cisneros<br>"Logi"</p>
+        <p class="dir__role">Presidente</p>
+        <div class="dir__desc" id="desc5">
+          <p>Líder visionario de nuestra fraternidad. Su compromiso con la hermandad y el impacto comunitario guía cada paso de nuestra misión.</p>
+        </div>
+        <button class="dir__btn" onclick="toggleDesc('desc5', this)">Ver Más ▾</button>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    /* ===== DIRECTIVA ===== */
+    .directiva {
+      position: relative;
+      background: linear-gradient(180deg, #1a0d00 0%, #0d0600 50%, #0a0500 100%);
+      padding: 40px 0 50px;
+      overflow: hidden;
+    }
+
+    .directiva__canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .directiva__header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 20px;
+      margin-bottom: 28px;
+    }
+
+    .directiva__header-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.55), transparent);
+    }
+
+    .directiva__header-text {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .directiva__title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 5px;
+      text-shadow: 0 0 30px rgba(201,168,76,0.5), 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .directiva__sub {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      font-weight: 400;
+      color: rgba(240,210,130,0.75);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Grid — 5 columns on mobile */
+    .directiva__grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding: 0 10px;
+    }
+
+    /* Card */
+    .dir__card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dir__img-wrap {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6), 0 0 12px rgba(201,168,76,0.08);
+      background: #120800;
+      position: relative;
+    }
+
+    .dir__img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #1e1000 0%, #2a1800 60%, #1a0c00 100%);
+    }
+
+    .dir__img-placeholder svg {
+      width: 65%;
+      opacity: 0.65;
+    }
+
+    .dir__name {
+      font-family: 'Cinzel', serif;
+      font-size: 7px;
+      font-weight: 600;
+      color: var(--gold-light);
+      text-align: center;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+    }
+
+    .dir__role {
+      font-family: 'Lato', sans-serif;
+      font-size: 6.5px;
+      color: rgba(240,200,100,0.7);
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Expandable description */
+    .dir__desc {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+      padding: 0 2px;
+    }
+
+    .dir__desc.open {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .dir__desc p {
+      font-family: 'Lato', sans-serif;
+      font-size: 7px;
+      color: rgba(255,240,200,0.8);
+      text-align: center;
+      line-height: 1.5;
+      padding-top: 4px;
+    }
+
+    .dir__btn {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-family: 'Lato', sans-serif;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .dir__btn:hover,
+    .dir__btn.open {
+      background: rgba(201,168,76,0.15);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+  </style>
+
+  <script>
+    function toggleDesc(id, btn) {
+      const desc = document.getElementById(id);
+      const isOpen = desc.classList.contains('open');
+      desc.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.textContent = isOpen ? 'Ver Más ▾' : 'Ver Menos ▴';
+    }
+  </script>
+
+  <script>
+  // Directiva section — same subtle animation, even lighter
+  new p5(function(p) {
+    const canvas = document.getElementById('dirCanvas');
+    let W, H, motes = [], glints = [];
+
+    const C = [
+      (a) => `rgba(212,175,55,${a})`,
+      (a) => `rgba(240,220,150,${a})`,
+      (a) => `rgba(200,180,100,${a})`,
+      (a) => `rgba(255,240,180,${a})`,
+    ];
+
+    p.setup = function() {
+      let cnv = p.createCanvas(canvas.offsetWidth, canvas.offsetHeight);
+      cnv.parent(canvas.parentElement);
+      cnv.elt.style.position     = 'absolute';
+      cnv.elt.style.inset        = '0';
+      cnv.elt.style.width        = '100%';
+      cnv.elt.style.height       = '100%';
+      cnv.elt.style.pointerEvents= 'none';
+      cnv.elt.style.zIndex       = '1';
+      canvas.style.display       = 'none';
+      W = p.width; H = p.height;
+      for (let i = 0; i < 28; i++) motes.push(nm());
+      for (let i = 0; i < 5;  i++) glints.push(ng());
+      p.noStroke();
+    };
+
+    p.windowResized = function() {
+      p.resizeCanvas(canvas.parentElement.offsetWidth, canvas.parentElement.offsetHeight);
+      W = p.width; H = p.height;
+    };
+
+    function nm(fb) {
+      return { x:p.random(W), y:fb?H+5:p.random(H),
+               r:p.random(0.4,1.2), vx:p.random(-0.03,0.03),
+               vy:p.random(-0.12,-0.03), life:0,
+               maxLife:p.int(p.random(280,580)),
+               phase:p.random(p.TWO_PI), ci:p.int(p.random(4)) };
+    }
+    function ng(fb) {
+      return { x:p.random(W*0.05,W*0.95), y:fb?H+5:p.random(H),
+               r:p.random(0.8,2.8), life:0,
+               maxLife:p.int(p.random(130,280)),
+               phase:p.random(p.TWO_PI), rot:p.random(p.TWO_PI), ci:p.int(p.random(4)) };
+    }
+    function eio(t){return t<0.5?2*t*t:-1+(4-2*t)*t;}
+
+    function drawMote(m) {
+      let prog=m.life/m.maxLife, a=eio(prog<0.5?prog*2:(1-prog)*2)*0.18;
+      let wx=p.sin(m.phase+m.life*0.016)*1.5;
+      let g=p.drawingContext.createRadialGradient(m.x+wx,m.y,0,m.x+wx,m.y,m.r*3);
+      g.addColorStop(0,C[m.ci](a)); g.addColorStop(0.5,C[m.ci](a*0.35)); g.addColorStop(1,C[m.ci](0));
+      p.drawingContext.fillStyle=g;
+      p.drawingContext.beginPath(); p.drawingContext.arc(m.x+wx,m.y,m.r*3,0,Math.PI*2); p.drawingContext.fill();
+    }
+    function drawGlint(g_) {
+      let prog=g_.life/g_.maxLife, a=eio(prog<0.5?prog*2:(1-prog)*2)*0.25;
+      let pulse=g_.r*(0.9+0.1*p.sin(g_.phase+g_.life*0.08));
+      p.push(); p.translate(g_.x,g_.y); p.rotate(g_.rot+g_.life*0.005);
+      p.drawingContext.fillStyle=C[g_.ci](a);
+      p.drawingContext.beginPath();
+      for(let i=0;i<8;i++){let ang=(i/8)*Math.PI*2,r_=i%2===0?pulse:pulse*0.2,cx=Math.cos(ang)*r_,cy=Math.sin(ang)*r_;i===0?p.drawingContext.moveTo(cx,cy):p.drawingContext.lineTo(cx,cy);}
+      p.drawingContext.closePath(); p.drawingContext.fill();
+      let gg=p.drawingContext.createRadialGradient(0,0,0,0,0,pulse);
+      gg.addColorStop(0,C[g_.ci](a*0.7)); gg.addColorStop(1,C[g_.ci](0));
+      p.drawingContext.fillStyle=gg; p.drawingContext.beginPath(); p.drawingContext.arc(0,0,pulse,0,Math.PI*2); p.drawingContext.fill();
+      p.pop();
+    }
+
+    p.draw=function(){
+      p.clear();
+      for(let m of motes){drawMote(m);m.x+=m.vx+p.sin(m.phase+m.life*0.01)*0.03;m.y+=m.vy;m.life++;if(m.life>=m.maxLife)Object.assign(m,nm(true));}
+      for(let g_ of glints){drawGlint(g_);g_.life++;if(g_.life>=g_.maxLife)Object.assign(g_,ng(true));}
+    };
+  });
+  </script>
+
+  
+  <section class="gallery" id="galeria">
+
+    <div class="gallery__header">
+      <div class="gallery__header-line"></div>
+      <div class="gallery__header-text">
+        <p class="gallery__label">NUESTROS MOMENTOS</p>
+        <h2 class="gallery__title">Galería</h2>
+      </div>
+      <div class="gallery__header-line"></div>
+    </div>
+
+    
+    <div class="gallery__grid">
+      <!-- wide + portrait anclado -->
+      <div class="g-item g-item--wide" data-idx="0"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%207.05.15%20AM.jpeg" alt="Foto 1" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item g-item--portrait" data-idx="1"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%207.28.25%20AM.jpeg" alt="Foto 2" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="2"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%207.32.31%20AM.jpeg" alt="Foto 3" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="3"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%207.40.21%20AM.jpeg" alt="Foto 4" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <!-- bloque medio: portrait izq + 2 sq dcha -->
+      <div class="g-item g-item--portrait" data-idx="4"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%207.50.42%20AM.jpeg" alt="Foto 5" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="5"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.02.19%20AM.jpeg" alt="Foto 6" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="6"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.05.40%20AM.jpeg" alt="Foto 7" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="7"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.28.34%20AM%20(1).jpeg" alt="Foto 8" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="8"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.28.34%20AM%20(2).jpeg" alt="Foto 9" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <!-- wide central -->
+      <div class="g-item g-item--wide" data-idx="9"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.28.34%20AM.jpeg" alt="Foto 10" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="10"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.28.35%20AM.jpeg" alt="Foto 11" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <!-- sq + sq + portrait -->
+      <div class="g-item" data-idx="11"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.33.25%20AM.jpeg" alt="Foto 12" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="12"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.37.10%20AM%20(1).jpeg" alt="Foto 13" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item g-item--portrait" data-idx="13"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.37.10%20AM.jpeg" alt="Foto 14" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="14"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.38.44%20AM.jpeg" alt="Foto 15" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="15"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.39.22%20AM.jpeg" alt="Foto 16" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <!-- wide al fondo -->
+      <div class="g-item" data-idx="16"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.40.47%20AM.jpeg" alt="Foto 17" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item g-item--wide" data-idx="17"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.40.48%20AM%20(1).jpeg" alt="Foto 18" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="18"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.40.48%20AM%20(2).jpeg" alt="Foto 19" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="19"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.40.48%20AM.jpeg" alt="Foto 20" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item" data-idx="20"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.44.20%20AM.jpeg" alt="Foto 21" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+      <div class="g-item g-item--wide" data-idx="21"><img class="g-img" src="../img/gallery/WhatsApp%20Image%202026-04-15%20at%208.53.26%20AM.jpeg" alt="Foto 22" loading="lazy"/><div class="g-hover"><span class="g-zoom">&#43;</span></div></div>
+    </div>
+
+    
+    <div class="g-lightbox" id="gLightbox">
+      <div class="g-lightbox__backdrop" id="gBackdrop"></div>
+      <div class="g-lightbox__frame">
+        <div class="g-lightbox__img-wrap">
+          <img class="g-lightbox__img" id="gLightboxImg" src="" alt=""/>
+          <p class="g-lightbox__num" id="gLightboxNum">Foto #1</p>
+        </div>
+        <button class="g-lightbox__close" id="gClose">&#10005;</button>
+        <button class="g-lightbox__nav g-lightbox__nav--prev" id="gLPrev">&#10094;</button>
+        <button class="g-lightbox__nav g-lightbox__nav--next" id="gLNext">&#10095;</button>
+      </div>
+    </div>
+
+  </section>
+
+  <style>
+    /* ===== GALLERY ===== */
+    .gallery {
+      background: #080400;
+      padding: 40px 0 52px;
+      position: relative;
+    }
+
+    .gallery__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 18px;
+      margin-bottom: 22px;
+    }
+
+    .gallery__header-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+
+    .gallery__header-text { text-align: center; }
+
+    .gallery__label {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: rgba(201,168,76,0.6);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .gallery__title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 4px;
+      text-shadow: 0 0 24px rgba(201,168,76,0.4);
+    }
+
+    /* ── Mosaic grid ── */
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: calc((100vw - 18px) / 3);
+      gap: 6px;
+      padding: 0 6px;
+      grid-auto-flow: row dense;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .g-item--portrait { grid-row: span 2; }
+    .g-item--wide     { grid-column: span 2; }
+
+    /* imagen base — ligeramente desaturada y calida para unificar */
+    .g-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.78) brightness(0.88) sepia(0.08);
+      transition: transform 0.45s ease, filter 0.35s ease;
+    }
+
+    /* vignette dorado sobre cada foto */
+    .g-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 55%,
+        rgba(10, 4, 0, 0.55) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* corner accent dorado */
+    .g-item::after {
+      content: '';
+      position: absolute;
+      top: 7px; left: 7px;
+      width: 13px; height: 13px;
+      border-top: 1.5px solid rgba(201,168,76,0.5);
+      border-left: 1.5px solid rgba(201,168,76,0.5);
+      border-radius: 2px 0 0 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .g-item:hover::after,
+    .g-item:active::after { opacity: 0; }
+
+    /* hover: revela color real + zoom */
+    .g-item:hover .g-img,
+    .g-item:active .g-img {
+      transform: scale(1.07);
+      filter: saturate(1.05) brightness(1.0) sepia(0);
+    }
+
+    .g-item:hover,
+    .g-item:active {
+      box-shadow: 0 0 0 1.5px rgba(201,168,76,0.5),
+                  0 8px 28px rgba(0,0,0,0.6);
+      z-index: 2;
+    }
+
+    /* gold corner accent */
+    .g-item::after {
+      content: '';
+      position: absolute;
+      top: 6px; left: 6px;
+      width: 14px; height: 14px;
+      border-top: 1.5px solid rgba(201,168,76,0.35);
+      border-left: 1.5px solid rgba(201,168,76,0.35);
+      border-radius: 2px 0 0 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    /* hover overlay */
+    .g-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 10, 0, 0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      transition: background 0.3s ease;
+    }
+
+    .g-zoom {
+      font-size: 22px;
+      color: var(--gold-light);
+      opacity: 0;
+      transform: scale(0.6) rotate(-15deg);
+      transition: opacity 0.3s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-shadow: 0 0 12px rgba(201,168,76,0.6);
+      line-height: 1;
+    }
+
+    .g-item:hover .g-hover,
+    .g-item:active .g-hover {
+      background: rgba(20, 10, 0, 0.5);
+    }
+
+    .g-item:hover .g-zoom,
+    .g-item:active .g-zoom {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .g-item:hover .g-placeholder,
+    .g-item:active .g-placeholder {
+      transform: scale(1.05);
+    }
+
+    /* border glow on hover */
+    .g-item:hover,
+    .g-item:active {
+      box-shadow: 0 0 0 1.5px rgba(201,168,76,0.4),
+                  0 6px 24px rgba(0,0,0,0.5);
+    }
+
+    /* ── Lightbox ── */
+    .g-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .g-lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .g-lightbox__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 2, 0, 0.93);
+      backdrop-filter: blur(6px);
+    }
+
+    .g-lightbox__frame {
+      position: relative;
+      z-index: 2;
+      width: 90vw;
+      max-width: 480px;
+    }
+
+    .g-lightbox__img-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 0 60px rgba(0,0,0,0.8), 0 0 30px rgba(201,168,76,0.08);
+    }
+
+    .g-lightbox__img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #0a0500;
+    }
+
+    .g-lightbox__num {
+      position: absolute;
+      bottom: -24px;
+      left: 0; right: 0;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      color: rgba(201,168,76,0.5);
+      letter-spacing: 2px;
+    }
+
+    .g-lightbox__close {
+      position: absolute;
+      top: -14px; right: -14px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(30,15,0,0.9);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-size: 13px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .g-lightbox__close:hover { background: rgba(201,168,76,0.2); }
+
+    .g-lightbox__nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(20,10,0,0.8);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .g-lightbox__nav:hover { background: rgba(201,168,76,0.2); }
+    .g-lightbox__nav--prev { left: -18px; }
+    .g-lightbox__nav--next { right: -18px; }
+  </style>
+
+  <script>
+  (function() {
+    const items     = document.querySelectorAll('.g-item');
+    const lightbox  = document.getElementById('gLightbox');
+    const backdrop  = document.getElementById('gBackdrop');
+    const lbImg     = document.getElementById('gLightboxImg');
+    const numLabel  = document.getElementById('gLightboxNum');
+    const btnClose  = document.getElementById('gClose');
+    const btnPrev   = document.getElementById('gLPrev');
+    const btnNext   = document.getElementById('gLNext');
+    const total     = items.length;
+    let   current   = 0;
+
+    function open(idx) {
+      current = ((idx % total) + total) % total;
+      const src = items[current].querySelector('.g-img').src;
+      lbImg.src = src;
+      numLabel.textContent = `Foto ${current + 1} / ${total}`;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+    backdrop.addEventListener('click', close);
+    btnClose.addEventListener('click', close);
+    btnPrev.addEventListener('click', () => open(current - 1));
+    btnNext.addEventListener('click', () => open(current + 1));
+
+    let lx = 0;
+    lightbox.addEventListener('touchstart', e => { lx = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - lx;
+      if (dx < -40) open(current + 1);
+      if (dx >  40) open(current - 1);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  open(current - 1);
+      if (e.key === 'ArrowRight') open(current + 1);
+      if (e.key === 'Escape')     close();
+    });
+  })();
+  </script>
+
+  
+  <section class="historia">
+
+    
+    <div class="historia__year-bg">2003</div>
+
+    <div class="historia__inner">
+
+      
+      <div class="historia__text">
+        <p class="historia__eyebrow">&#9670; DOCUMENTO OFICIAL &#9670;</p>
+        <h2 class="historia__title">Nuestra<br><em>Carta Fundacional</em></h2>
+        <div class="historia__rule"></div>
+        <p class="historia__body">
+          El <strong>8 de junio de 2003</strong>, la Honorable Fraternidad
+          <strong>Phi Zeta Chi</strong> ratificó por votación unánime en Convención Anual
+          la constitución del <strong>Capítulo Pasivo Roberto Garcés,
+          Alpha Alpha – Florida, USA</strong> — el primero fuera de Puerto Rico.
+        </p>
+        <p class="historia__body">
+          Este documento, firmado por el Gran Canciller
+          <strong>George L. Ramírez</strong>, es el testimonio de nuestra
+          historia y el fundamento de nuestra hermandad en la Florida.
+        </p>
+
+        <button class="historia__btn" id="openPdfBtn">
+          <span class="historia__btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <line x1="9" y1="13" x2="15" y2="13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="9" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Ver Carta Fundacional
+        </button>
+      </div>
+
+      
+      <div class="historia__doc-wrap">
+        <div class="historia__doc-card" id="openPdfBtn2">
+          
+          <div class="historia__doc-paper">
+            
+            <div class="historia__doc-letterhead">
+              <p class="doc-lh-title">Fraternidad <strong>Phi</strong> Zeta <strong>Chi</strong></p>
+              <p class="doc-lh-addr">Calle M #114, Ramey · Aguadilla, PR</p>
+              <div class="doc-lh-line"></div>
+            </div>
+            <p class="doc-date">9 de Junio de 2003</p>
+            <div class="doc-lines">
+              <div class="doc-line doc-line--sm"></div>
+              <div class="doc-line doc-line--md"></div>
+              <div class="doc-line doc-line--lg"></div>
+              <div class="doc-line doc-line--md"></div>
+              <div class="doc-line doc-line--sm"></div>
+              <div class="doc-line doc-line--lg"></div>
+              <div class="doc-line doc-line--md"></div>
+              <div class="doc-line doc-line--sm"></div>
+              <div class="doc-line doc-line--lg"></div>
+              <div class="doc-line doc-line--md"></div>
+            </div>
+            <div class="doc-sig">
+              <div class="doc-sig-line"></div>
+              <p class="doc-sig-name">George L. Ramírez</p>
+              <p class="doc-sig-role">Gran Canciller y Presidente</p>
+            </div>
+          </div>
+          
+          <div class="historia__doc-hover">
+            <span class="historia__doc-hover-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="white" stroke-width="2"/></svg>
+            </span>
+            <p>Ver documento</p>
+          </div>
+        </div>
+        
+        <div class="historia__doc-glow"></div>
+        
+        <div class="historia__seal">
+          <div class="historia__seal-inner">
+            <p class="seal-greek">ΦΖΧ</p>
+            <p class="seal-year">2003</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="pdf-modal" id="pdfModal">
+      <div class="pdf-modal__backdrop" id="pdfBackdrop"></div>
+      <div class="pdf-modal__box">
+        <div class="pdf-modal__header">
+          <p class="pdf-modal__title">Carta Fundacional — Capítulo Alpha Alpha</p>
+          <div class="pdf-modal__actions">
+            <a href="Capitulo_Alpha_Alpha_Orlando_.pdf" download class="pdf-modal__download">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Descargar
+            </a>
+            <button class="pdf-modal__close" id="closePdfBtn">&#10005;</button>
+          </div>
+        </div>
+        <div class="pdf-modal__viewer">
+          <iframe src="Capitulo_Alpha_Alpha_Orlando_.pdf" 
+                  title="Carta Fundacional Phi Zeta Chi"
+                  class="pdf-modal__iframe">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <style>
+    /* ═══════════ HISTORIA ═══════════ */
+    .historia {
+      position: relative;
+      background: linear-gradient(160deg, #0d0600 0%, #1a0d00 40%, #0d0600 100%);
+      padding: 60px 20px 64px;
+      overflow: hidden;
+    }
+
+    /* giant 2003 watermark */
+    .historia__year-bg {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(80px, 40vw, 180px);
+      font-weight: 900;
+      color: rgba(201,168,76,0.04);
+      letter-spacing: -4px;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .historia__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Text column ── */
+    .historia__eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: rgba(201,168,76,0.6);
+      margin-bottom: 10px;
+    }
+
+    .historia__title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 7vw, 34px);
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.15;
+      text-shadow: 0 0 30px rgba(201,168,76,0.3);
+    }
+
+    .historia__title em {
+      font-style: italic;
+      color: rgba(255,240,180,0.75);
+      font-weight: 400;
+    }
+
+    .historia__rule {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 16px 0;
+    }
+
+    .historia__body {
+      font-family: 'Lato', sans-serif;
+      font-size: 13.5px;
+      color: rgba(255,235,190,0.72);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .historia__body strong { color: rgba(255,245,200,0.95); }
+
+    .historia__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 13px 22px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(201,168,76,0.08));
+      border: 1px solid rgba(201,168,76,0.5);
+      border-radius: 6px;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .historia__btn:hover {
+      background: linear-gradient(135deg, rgba(201,168,76,0.32), rgba(201,168,76,0.14));
+      border-color: var(--gold-light);
+      box-shadow: 0 0 24px rgba(201,168,76,0.2);
+    }
+
+    .historia__btn-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--gold-light);
+    }
+
+    /* ── Document card ── */
+    .historia__doc-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .historia__doc-card {
+      position: relative;
+      width: min(280px, 80vw);
+      background: #f8f5ee;
+      border-radius: 4px;
+      padding: 22px 20px 20px;
+      transform: rotate(-2deg);
+      box-shadow:
+        6px 8px 32px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(201,168,76,0.25),
+        inset 0 0 40px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
+      overflow: hidden;
+    }
+
+    .historia__doc-card:hover {
+      transform: rotate(0deg) scale(1.03);
+      box-shadow:
+        10px 14px 48px rgba(0,0,0,0.8),
+        0 0 0 2px rgba(201,168,76,0.5),
+        0 0 40px rgba(201,168,76,0.15);
+    }
+
+    .historia__doc-paper { position: relative; z-index: 1; }
+
+    .historia__doc-letterhead { text-align: center; margin-bottom: 10px; }
+
+    .doc-lh-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+    }
+
+    .doc-lh-addr {
+      font-size: 7.5px;
+      color: #555;
+      margin-top: 2px;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .doc-lh-line {
+      width: 100%;
+      height: 1px;
+      background: #888;
+      margin: 8px 0;
+    }
+
+    .doc-date {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      color: #444;
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    /* fake text lines */
+    .doc-lines { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+
+    .doc-line {
+      height: 5px;
+      background: linear-gradient(90deg, #ccc, #ddd);
+      border-radius: 2px;
+    }
+
+    .doc-line--sm  { width: 55%; }
+    .doc-line--md  { width: 78%; }
+    .doc-line--lg  { width: 95%; }
+
+    .doc-sig { margin-top: 10px; }
+    .doc-sig-line {
+      width: 90px;
+      height: 1px;
+      background: #333;
+      margin-bottom: 4px;
+    }
+    .doc-sig-name  { font-family:'Lato',sans-serif; font-size:8px; font-weight:700; color:#222; }
+    .doc-sig-role  { font-family:'Lato',sans-serif; font-size:7px; color:#555; margin-top:1px; }
+
+    /* hover overlay on card */
+    .historia__doc-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,5,0,0.0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      z-index: 5;
+      transition: background 0.3s;
+    }
+
+    .historia__doc-hover p {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      color: white;
+      letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .historia__doc-hover-icon {
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .historia__doc-hover-icon svg {
+      width: 28px; height: 28px;
+    }
+
+    .historia__doc-card:hover .historia__doc-hover {
+      background: rgba(10,5,0,0.65);
+    }
+
+    .historia__doc-card:hover .historia__doc-hover p,
+    .historia__doc-card:hover .historia__doc-hover-icon {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* glow behind card */
+    .historia__doc-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 260px; height: 340px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* wax seal */
+    .historia__seal {
+      position: absolute;
+      bottom: -16px; right: 20px;
+      width: 54px; height: 54px;
+      background: radial-gradient(circle at 40% 35%, #c9282e, #7a0d10);
+      border-radius: 50%;
+      border: 3px solid rgba(201,168,76,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5), 0 0 12px rgba(180,20,20,0.3);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10;
+    }
+
+    .historia__seal-inner { text-align: center; }
+
+    .seal-greek {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,230,150,0.95);
+      line-height: 1;
+    }
+
+    .seal-year {
+      font-family: 'Lato', sans-serif;
+      font-size: 7px;
+      color: rgba(255,210,120,0.8);
+      letter-spacing: 1px;
+    }
+
+    /* ═══════════ PDF MODAL ═══════════ */
+    .pdf-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .pdf-modal.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .pdf-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(5,2,0,0.85);
+      backdrop-filter: blur(4px);
+    }
+
+    .pdf-modal__box {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 90vh;
+      background: #1a0d00;
+      border-radius: 16px 16px 0 0;
+      border-top: 1px solid rgba(201,168,76,0.3);
+      border-left: 1px solid rgba(201,168,76,0.15);
+      border-right: 1px solid rgba(201,168,76,0.15);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .pdf-modal.open .pdf-modal__box {
+      transform: translateY(0);
+    }
+
+    .pdf-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      flex-shrink: 0;
+      gap: 10px;
+    }
+
+    .pdf-modal__title {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+      flex: 1;
+    }
+
+    .pdf-modal__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pdf-modal__download {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .pdf-modal__download svg {
+      width: 14px; height: 14px; stroke: var(--gold-light);
+    }
+
+    .pdf-modal__download:hover { background: rgba(201,168,76,0.28); }
+
+    .pdf-modal__close {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .pdf-modal__close:hover { background: rgba(255,255,255,0.15); }
+
+    .pdf-modal__viewer {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .pdf-modal__iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
+    }
+  </style>
+
+  <script>
+  (function() {
+    const modal    = document.getElementById('pdfModal');
+    const backdrop = document.getElementById('pdfBackdrop');
+    const btnOpen1 = document.getElementById('openPdfBtn');
+    const btnOpen2 = document.getElementById('openPdfBtn2');
+    const btnClose = document.getElementById('closePdfBtn');
+
+    function openModal()  { modal.classList.add('open');    document.body.style.overflow = 'hidden'; }
+    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+
+    btnOpen1.addEventListener('click', openModal);
+    btnOpen2.addEventListener('click', openModal);
+    btnClose.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+  })();
+  </script>
+
+  
+  
+  <!-- ═══════════════════════════════════════════
+       SECCIÓN: ¿CÓMO UNIRME?
+  ════════════════════════════════════════════ -->
+  <section class="unirme" id="unirme">
+
+    <div class="unirme__bg-glow"></div>
+
+    <div class="unirme__header">
+      <div class="unirme__header-line"></div>
+      <div class="unirme__header-text">
+        <p class="unirme__eyebrow">&#9670; FRATERNIDAD &#9670;</p>
+        <h2 class="unirme__title">¿Cómo Unirme?</h2>
+      </div>
+      <div class="unirme__header-line"></div>
+    </div>
+
+    <div class="unirme__inner">
+
+      <p class="unirme__intro">
+        Completa el formulario y nos pondremos en contacto contigo. 
+        Puedes enviarlo por correo o directamente vía WhatsApp.
+      </p>
+
+      <form class="unirme__form" id="unirmeForm" onsubmit="return false;">
+
+        <!-- Nombre completo -->
+        <div class="uf-field">
+          <label class="uf-label" for="uf-nombre">
+            <span class="uf-label-icon">✦</span> Nombre Completo
+          </label>
+          <input class="uf-input" id="uf-nombre" type="text" placeholder="Tu nombre completo" autocomplete="name"/>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="uf-field">
+          <label class="uf-label" for="uf-phone">
+            <span class="uf-label-icon">✦</span> Phone Contact
+          </label>
+          <input class="uf-input" id="uf-phone" type="tel" placeholder="(000) 000-0000" autocomplete="tel"/>
+        </div>
+
+        <!-- Ciudad -->
+        <div class="uf-field">
+          <label class="uf-label" for="uf-ciudad">
+            <span class="uf-label-icon">✦</span> Región o Ciudad · Residencia en FL
+          </label>
+          <input class="uf-input" id="uf-ciudad" type="text" placeholder="Ej: Orlando, Tampa, Miami..."/>
+        </div>
+
+        <!-- Edad -->
+        <div class="uf-field">
+          <label class="uf-label" for="uf-edad">
+            <span class="uf-label-icon">✦</span> Edad
+          </label>
+          <input class="uf-input" id="uf-edad" type="number" placeholder="Tu edad" min="18" max="99"/>
+        </div>
+
+        <!-- ¿Conoce fraterno? -->
+        <div class="uf-field">
+          <label class="uf-label">
+            <span class="uf-label-icon">✦</span> ¿Conoce a algún Fraterno?
+          </label>
+          <div class="uf-radio-group">
+            <label class="uf-radio-label" id="radioSiLabel">
+              <input type="radio" name="conoce" value="si" id="radioSi" onchange="toggleFraterno()"/>
+              <span class="uf-radio-box"></span>
+              Sí
+            </label>
+            <label class="uf-radio-label" id="radioNoLabel">
+              <input type="radio" name="conoce" value="no" id="radioNo" onchange="toggleFraterno()"/>
+              <span class="uf-radio-box"></span>
+              No
+            </label>
+          </div>
+          <!-- campo condicional -->
+          <div class="uf-field uf-field--sub" id="fraternoField" style="display:none; margin-top:10px;">
+            <input class="uf-input" id="uf-fraterno" type="text" placeholder="Nombre del fraterno"/>
+          </div>
+        </div>
+
+        <!-- ¿Cómo se enteró? -->
+        <div class="uf-field">
+          <label class="uf-label" for="uf-como">
+            <span class="uf-label-icon">✦</span> ¿Cómo se enteró de nuestro Capítulo Alpha Alpha?
+          </label>
+          <select class="uf-input uf-select" id="uf-como">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="Redes Sociales">Redes Sociales</option>
+            <option value="Un fraterno me invitó">Un fraterno me invitó</option>
+            <option value="Evento comunitario">Evento comunitario</option>
+            <option value="Búsqueda en internet">Búsqueda en internet</option>
+            <option value="Familiar o amigo">Familiar o amigo</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <!-- Botones de envío -->
+        <div class="uf-submit-group">
+          <button type="button" class="uf-btn uf-btn--email" onclick="enviarEmail()">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Enviar por Email
+          </button>
+          <button type="button" class="uf-btn uf-btn--whatsapp" onclick="enviarWhatsApp()">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Enviar por WhatsApp
+          </button>
+        </div>
+
+        <!-- Confirmación -->
+        <div class="uf-confirm" id="ufConfirm" style="display:none;">
+          <span class="uf-confirm-icon">✓</span>
+          <p>¡Mensaje listo! Se abrirá tu app de correo o WhatsApp.</p>
+        </div>
+
+      </form>
+
+      <!-- Info de contacto directo -->
+      <div class="unirme__direct">
+        <p class="unirme__direct-label">O contáctanos directamente:</p>
+        <div class="unirme__direct-links">
+          <a href="mailto:pagandavilaj@gmail.com" class="unirme__direct-btn unirme__direct-btn--email">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            pagandavilaj@gmail.com
+          </a>
+          <a href="https://wa.me/14079535085" target="_blank" class="unirme__direct-btn unirme__direct-btn--wa">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            407-953-5085
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    /* ═══════════ ¿CÓMO UNIRME? ═══════════ */
+    .unirme {
+      position: relative;
+      background: linear-gradient(180deg, #0a0500 0%, #130900 50%, #0a0500 100%);
+      padding: 52px 20px 60px;
+      overflow: hidden;
+    }
+
+    .unirme__bg-glow {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .unirme__header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .unirme__header-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.45), transparent);
+    }
+
+    .unirme__header-text { text-align: center; flex-shrink: 0; }
+
+    .unirme__eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 4px;
+      color: rgba(201,168,76,0.55);
+      margin-bottom: 4px;
+    }
+
+    .unirme__title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+      text-shadow: 0 0 30px rgba(201,168,76,0.35);
+    }
+
+    .unirme__inner {
+      position: relative; z-index: 2;
+      max-width: 480px; margin: 0 auto;
+    }
+
+    .unirme__intro {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,235,180,0.6);
+      text-align: center;
+      line-height: 1.6;
+      margin: 16px 0 28px;
+    }
+
+    /* ── Form ── */
+    .unirme__form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .uf-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .uf-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(201,168,76,0.8);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .uf-label-icon {
+      font-size: 7px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .uf-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,240,200,0.9);
+      outline: none;
+      transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+    }
+
+    .uf-input::placeholder { color: rgba(201,168,76,0.3); }
+
+    .uf-input:focus {
+      border-color: rgba(201,168,76,0.65);
+      background: rgba(201,168,76,0.06);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+    }
+
+    .uf-select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(201,168,76,0.6)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+      padding-right: 38px;
+    }
+
+    .uf-select option {
+      background: #1a0d00;
+      color: rgba(255,240,200,0.9);
+    }
+
+    /* Radio group */
+    .uf-radio-group {
+      display: flex;
+      gap: 20px;
+    }
+
+    .uf-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,240,200,0.75);
+    }
+
+    .uf-radio-label input[type="radio"] {
+      display: none;
+    }
+
+    .uf-radio-box {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.4);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .uf-radio-box::after {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.2s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .uf-radio-label input:checked ~ .uf-radio-box {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+    }
+
+    .uf-radio-label input:checked ~ .uf-radio-box::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Submit buttons */
+    .uf-submit-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .uf-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+
+    .uf-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .uf-btn:active { transform: scale(0.97); }
+
+    .uf-btn--email {
+      background: linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.1));
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--gold-light);
+    }
+
+    .uf-btn--email svg { stroke: var(--gold-light); }
+
+    .uf-btn--email:hover {
+      background: linear-gradient(135deg, rgba(201,168,76,0.35), rgba(201,168,76,0.18));
+      box-shadow: 0 4px 20px rgba(201,168,76,0.15);
+    }
+
+    .uf-btn--whatsapp {
+      background: linear-gradient(135deg, #1a6b2e, #128c2a);
+      border: 1px solid rgba(37,211,102,0.4);
+      color: #e8ffe8;
+    }
+
+    .uf-btn--whatsapp svg { stroke: #e8ffe8; }
+
+    .uf-btn--whatsapp:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.2);
+    }
+
+    /* Confirmation */
+    .uf-confirm {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(37,211,102,0.08);
+      border: 1px solid rgba(37,211,102,0.3);
+      border-radius: 8px;
+      padding: 12px 14px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(8px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .uf-confirm-icon {
+      font-size: 18px;
+      color: #25d366;
+      flex-shrink: 0;
+    }
+
+    .uf-confirm p {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: rgba(200,255,210,0.85);
+    }
+
+    /* Direct contact */
+    .unirme__direct {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      text-align: center;
+    }
+
+    .unirme__direct-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px;
+      color: rgba(201,168,76,0.5);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .unirme__direct-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .unirme__direct-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .unirme__direct-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .unirme__direct-btn--email {
+      color: rgba(255,235,180,0.75);
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(201,168,76,0.05);
+    }
+
+    .unirme__direct-btn--email svg { stroke: var(--gold); }
+    .unirme__direct-btn--email:hover { background: rgba(201,168,76,0.12); }
+
+    .unirme__direct-btn--wa {
+      color: #e8ffe8;
+      border: 1px solid rgba(37,211,102,0.25);
+      background: rgba(37,211,102,0.06);
+    }
+
+    .unirme__direct-btn--wa svg { stroke: #25d366; }
+    .unirme__direct-btn--wa:hover { background: rgba(37,211,102,0.14); }
+  </style>
+
+  <script>
+  function toggleFraterno() {
+    const si = document.getElementById('radioSi');
+    const field = document.getElementById('fraternoField');
+    field.style.display = si.checked ? 'flex' : 'none';
+  }
+
+  function recogerDatos() {
+    const nombre   = document.getElementById('uf-nombre').value.trim();
+    const phone    = document.getElementById('uf-phone').value.trim();
+    const ciudad   = document.getElementById('uf-ciudad').value.trim();
+    const edad     = document.getElementById('uf-edad').value.trim();
+    const conoceEl = document.querySelector('input[name="conoce"]:checked');
+    const conoce   = conoceEl ? conoceEl.value : '';
+    const fraterno = document.getElementById('uf-fraterno').value.trim();
+    const como     = document.getElementById('uf-como').value;
+
+    if (!nombre || !phone || !ciudad || !edad || !conoce || !como) {
+      alert('Por favor completa todos los campos antes de enviar.');
+      return null;
+    }
+
+    const fraternoLinea = conoce === 'si'
+      ? `Fraterno conocido: ${fraterno || 'No especificado'}`
+      : 'No conoce a ningún fraterno';
+
+    return {
+      texto:
+`Solicitud de ingreso — Phi Zeta Chi Alpha Alpha FL
+
+Nombre completo: ${nombre}
+Teléfono: ${phone}
+Ciudad / Región en FL: ${ciudad}
+Edad: ${edad}
+¿Conoce a un fraterno? ${conoce === 'si' ? 'Sí' : 'No'}
+${fraternoLinea}
+¿Cómo se enteró del Capítulo?: ${como}`,
+      nombre
+    };
+  }
+
+  function enviarEmail() {
+    const datos = recogerDatos();
+    if (!datos) return;
+    const subject = encodeURIComponent(`Solicitud de ingreso — ${datos.nombre}`);
+    const body    = encodeURIComponent(datos.texto);
+    window.location.href = `mailto:pagandavilaj@gmail.com?subject=${subject}&body=${body}`;
+    mostrarConfirm();
+  }
+
+  function enviarWhatsApp() {
+    const datos = recogerDatos();
+    if (!datos) return;
+    const msg = encodeURIComponent(datos.texto);
+    window.open(`https://wa.me/14079535085?text=${msg}`, '_blank');
+    mostrarConfirm();
+  }
+
+  function mostrarConfirm() {
+    const el = document.getElementById('ufConfirm');
+    el.style.display = 'flex';
+    setTimeout(() => { el.style.display = 'none'; }, 5000);
+  }
+  </script>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__logo-icon">ΦZX</div>
+        <div>
+          <p class="footer__logo-title">PHI ZETA CHI</p>
+          <p class="footer__logo-sub">Cap. Pasivo Alpha Alpha · Roberto Garcés, FL</p>
+        </div>
+      </div>
+      <div class="footer__rule"></div>
+      <p class="footer__motto">Fraternos Seremos Siempre</p>
+    </div>
+
+    <div class="footer__contact">
+      <a href="tel:4079535085" class="footer__contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        (407) 953-5085
+      </a>
+      <a href="mailto:pagandavilaJ@gmail.com" class="footer__contact-item">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        pagandavilaJ@gmail.com
+      </a>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Phi Zeta Chi · Alpha Alpha Florida. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <style>
+    .footer {
+      background: #050200;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 36px 20px 28px;
+    }
+
+    .footer__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .footer__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer__logo-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9a84c, #8a6a1e);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 11px; font-weight: 900;
+      color: #1a0a00;
+      border: 1.5px solid rgba(201,168,76,0.5);
+      flex-shrink: 0;
+    }
+
+    .footer__logo-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 2px;
+    }
+
+    .footer__logo-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 9px;
+      color: rgba(201,168,76,0.55);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    .footer__rule {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+    }
+
+    .footer__motto {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      color: rgba(201,168,76,0.45);
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,235,180,0.75);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer__contact-item svg {
+      width: 16px; height: 16px;
+      stroke: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .footer__contact-item:hover { color: var(--gold-light); }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding-top: 18px;
+      text-align: center;
+    }
+
+    .footer__copy {
+      font-family: 'Lato', sans-serif;
+      font-size: 9px;
+      color: rgba(201,168,76,0.3);
+      letter-spacing: 0.5px;
+    }
+  </style>
+
+  <style>
+    .navbar__mobile {
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(15, 7, 0, 0.97);
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .navbar__mobile.open {
+      max-height: 400px;
+      padding: 8px 0 16px;
+    }
+    .navbar__mobile-link {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .navbar__mobile-link:last-child { border-bottom: none; }
+    .navbar__mobile-link:active { background: rgba(201,168,76,0.08); }
+    .navbar__mobile-cta {
+      margin: 12px 24px 0;
+      padding: 12px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #c9a84c, #a07828);
+      color: #1a0f00 !important;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      border-bottom: none !important;
+    }
+    @media (min-width: 768px) {
+      .navbar__mobile { display: none !important; }
+    }
+  </style>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
