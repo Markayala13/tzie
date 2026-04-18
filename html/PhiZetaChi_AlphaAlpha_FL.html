@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Phi Zeta Chi – Alpha Alpha FL</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="../imagenes%202/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).png"/>
+  <meta property="og:title" content="Phi Zeta Chi – Capítulo Alpha Alpha Florida"/>
+  <meta property="og:description" content="Fraternidad Phi Zeta Chi · Cap. Pasivo Alpha Alpha · Roberto Garcés, Florida. Impactando nuestras comunidades desde 2003."/>
+  <meta property="og:image" content="../imagenes%202/hero.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="theme-color" content="#1a0d00"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -72,11 +78,11 @@
     }
 
     .navbar__logo-sub {
-      font-family: 'Cinzel', serif;
+      font-family: 'Lato', sans-serif;
       font-size: 8px;
-      font-weight: 400;
+      font-weight: 300;
       color: var(--gold);
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
     }
 
@@ -317,6 +323,155 @@
     }
 
     /* ===== Emblem SVG inline ===== */
+
+    /* ===== HERO CTA BUTTON ===== */
+    .hero__cta-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 30px;
+      background: transparent;
+      border: 1.5px solid rgba(201,168,76,0.65);
+      border-radius: 3px;
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .hero__cta-btn:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 22px rgba(201,168,76,0.2);
+      transform: translateY(-2px);
+    }
+    .hero__cta-btn:active { transform: translateY(0); }
+
+    /* ===== SECTION DIVIDER ===== */
+    .sec-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 28px;
+      height: 48px;
+      background: #0a0500;
+    }
+    .sec-divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.18), transparent);
+    }
+    .sec-divider__diamond {
+      font-size: 6px;
+      color: rgba(201,168,76,0.28);
+      letter-spacing: 10px;
+      padding-left: 10px;
+    }
+
+    /* ===== QUIÉNES SOMOS ===== */
+    .quienes {
+      background: linear-gradient(180deg, #0d0700 0%, #110800 100%);
+      padding: 44px 24px 40px;
+    }
+    .quienes__inner {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      align-items: center;
+    }
+    .quienes__stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .quienes__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .quienes__num {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(20px, 6vw, 30px);
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+      text-shadow: 0 0 18px rgba(201,168,76,0.3);
+    }
+    .quienes__lbl {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.5);
+    }
+    .quienes__sep {
+      font-size: 6px;
+      color: rgba(201,168,76,0.2);
+      flex-shrink: 0;
+      padding: 0 6px;
+      padding-bottom: 14px;
+    }
+    .quienes__desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,235,185,0.62);
+      line-height: 1.8;
+      text-align: center;
+    }
+    .quienes__desc strong { color: rgba(255,240,195,0.88); font-weight: 700; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===== BUTTON RIPPLE ===== */
+    .uf-btn { position: relative; overflow: hidden; }
+    .uf-ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: uf-ripple-anim 0.55s linear forwards;
+      background: rgba(255,255,255,0.15);
+      pointer-events: none;
+    }
+    @keyframes uf-ripple-anim { to { transform: scale(5); opacity: 0; } }
+
+    /* ===== FLOATING LABELS ===== */
+    .uf-float { position: relative; }
+    .uf-float .uf-input { padding-top: 20px; padding-bottom: 6px; }
+    .uf-float-label {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(201,168,76,0.38);
+      pointer-events: none;
+      transition: top 0.22s ease, transform 0.22s ease, font-size 0.22s ease, color 0.22s ease, letter-spacing 0.22s ease;
+    }
+    .uf-float .uf-input:focus ~ .uf-float-label,
+    .uf-float .uf-input:not(:placeholder-shown) ~ .uf-float-label {
+      top: 7px;
+      transform: none;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.72);
+    }
   </style>
 </head>
 <body>
@@ -384,6 +539,7 @@
       <div class="hero__tagline-wrap">
         <p class="hero__tagline" data-i18n="hero.tagline">Impactando Nuestras Comunidades</p>
       </div>
+      <a href="#nosotros" class="hero__cta-btn" data-i18n="hero.cta">Conoce el Capítulo &nbsp;↓</a>
     </div>
   </section>
 
@@ -1108,6 +1264,8 @@
   </script>
 
   
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
   <section class="events" id="eventos">
     <div class="events__header">
       <div class="events__header-line"></div>
@@ -1395,6 +1553,35 @@
   </script>
 
   
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
+  <!-- ===== QUIÉNES SOMOS ===== -->
+  <section class="quienes">
+    <div class="quienes__inner">
+      <div class="quienes__stats">
+        <div class="quienes__stat">
+          <span class="quienes__num">2003</span>
+          <span class="quienes__lbl" data-i18n="about.stat1">Fundación</span>
+        </div>
+        <div class="quienes__sep">◆</div>
+        <div class="quienes__stat">
+          <span class="quienes__num">22+</span>
+          <span class="quienes__lbl" data-i18n="about.stat2">Hermanos</span>
+        </div>
+        <div class="quienes__sep">◆</div>
+        <div class="quienes__stat">
+          <span class="quienes__num">FL</span>
+          <span class="quienes__lbl" data-i18n="about.stat3">Florida, USA</span>
+        </div>
+      </div>
+      <p class="quienes__desc" data-i18n="about.desc">
+        Somos el primer capítulo de <strong>Phi Zeta Chi</strong> establecido fuera de Puerto Rico. Desde 2003, servimos a comunidades en Florida a través de la hermandad, el liderazgo y el compromiso social Latino.
+      </p>
+    </div>
+  </section>
+
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
   <section class="directiva" id="nosotros">
 
     
@@ -1758,6 +1945,8 @@
   </script>
 
   
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
   <!-- ===== OBJETIVOS ===== -->
   <section class="objetivos" id="objetivos">
     <div class="obj__header">
@@ -1995,6 +2184,8 @@
       body.classList.toggle('open', !isOpen);
     }
   </script>
+
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
 
   <section class="gallery" id="galeria">
 
@@ -2377,6 +2568,8 @@
   </script>
 
   
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
   <section class="historia">
 
     
@@ -2907,6 +3100,8 @@
 
   
   
+  <div class="sec-divider"><div class="sec-divider__line"></div><span class="sec-divider__diamond">◆ ◆ ◆</span><div class="sec-divider__line"></div></div>
+
   <!-- ═══════════════════════════════════════════
        SECCIÓN: ¿CÓMO UNIRME?
   ════════════════════════════════════════════ -->
@@ -2933,35 +3128,27 @@
       <form class="unirme__form" id="unirmeForm" onsubmit="return false;">
 
         <!-- Nombre completo -->
-        <div class="uf-field">
-          <label class="uf-label" for="uf-nombre">
-            <span class="uf-label-icon">✦</span> Nombre Completo
-          </label>
-          <input class="uf-input" id="uf-nombre" type="text" placeholder="Tu nombre completo" autocomplete="name"/>
+        <div class="uf-field uf-float">
+          <input class="uf-input" id="uf-nombre" type="text" placeholder=" " autocomplete="name"/>
+          <label class="uf-float-label" for="uf-nombre">Nombre Completo</label>
         </div>
 
         <!-- Teléfono -->
-        <div class="uf-field">
-          <label class="uf-label" for="uf-phone">
-            <span class="uf-label-icon">✦</span> Phone Contact
-          </label>
-          <input class="uf-input" id="uf-phone" type="tel" placeholder="(000) 000-0000" autocomplete="tel"/>
+        <div class="uf-field uf-float">
+          <input class="uf-input" id="uf-phone" type="tel" placeholder=" " autocomplete="tel"/>
+          <label class="uf-float-label" for="uf-phone">Teléfono de Contacto</label>
         </div>
 
         <!-- Ciudad -->
-        <div class="uf-field">
-          <label class="uf-label" for="uf-ciudad">
-            <span class="uf-label-icon">✦</span> Región o Ciudad · Residencia en FL
-          </label>
-          <input class="uf-input" id="uf-ciudad" type="text" placeholder="Ej: Orlando, Tampa, Miami..."/>
+        <div class="uf-field uf-float">
+          <input class="uf-input" id="uf-ciudad" type="text" placeholder=" "/>
+          <label class="uf-float-label" for="uf-ciudad">Región o Ciudad · FL</label>
         </div>
 
         <!-- Edad -->
-        <div class="uf-field">
-          <label class="uf-label" for="uf-edad">
-            <span class="uf-label-icon">✦</span> Edad
-          </label>
-          <input class="uf-input" id="uf-edad" type="number" placeholder="Tu edad" min="18" max="99"/>
+        <div class="uf-field uf-float">
+          <input class="uf-input" id="uf-edad" type="number" placeholder=" " min="18" max="99"/>
+          <label class="uf-float-label" for="uf-edad">Edad</label>
         </div>
 
         <!-- ¿Conoce fraterno? -->
@@ -2982,8 +3169,9 @@
             </label>
           </div>
           <!-- campo condicional -->
-          <div class="uf-field uf-field--sub" id="fraternoField" style="display:none; margin-top:10px;">
-            <input class="uf-input" id="uf-fraterno" type="text" placeholder="Nombre del fraterno"/>
+          <div class="uf-field uf-field--sub uf-float" id="fraternoField" style="display:none; margin-top:10px;">
+            <input class="uf-input" id="uf-fraterno" type="text" placeholder=" "/>
+            <label class="uf-float-label" for="uf-fraterno">Nombre del Fraterno</label>
           </div>
         </div>
 
@@ -3119,11 +3307,12 @@
     }
 
     .uf-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Lato', sans-serif;
       font-size: 10px;
-      font-weight: 600;
-      color: rgba(201,168,76,0.8);
-      letter-spacing: 1px;
+      font-weight: 700;
+      color: rgba(201,168,76,0.75);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -3313,10 +3502,11 @@
     }
 
     .unirme__direct-label {
-      font-family: 'Cinzel', serif;
+      font-family: 'Lato', sans-serif;
       font-size: 9px;
+      font-weight: 300;
       color: rgba(201,168,76,0.5);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
@@ -3424,6 +3614,70 @@ ${fraternoLinea}
     el.style.display = 'flex';
     setTimeout(() => { el.style.display = 'none'; }, 5000);
   }
+  </script>
+
+  <script>
+  /* ===== SCROLL REVEAL ===== */
+  (function() {
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    // Section headers
+    document.querySelectorAll(
+      '.obj__header, .gallery__header, .directiva__header, .historia__inner, .unirme__header, .quienes__inner, .events__header'
+    ).forEach(el => { el.classList.add('reveal'); observer.observe(el); });
+
+    // Dir cards staggered
+    document.querySelectorAll('.dir__card').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 0.1) + 's';
+      observer.observe(el);
+    });
+
+    // Objetivos items staggered
+    document.querySelectorAll('.obj__item').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 0.06) + 's';
+      observer.observe(el);
+    });
+
+    // Quiénes stats
+    document.querySelectorAll('.quienes__stat, .quienes__desc').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 0.12) + 's';
+      observer.observe(el);
+    });
+
+    // Historia text + doc
+    document.querySelectorAll('.historia__text, .historia__doc-wrap').forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 0.15) + 's';
+      observer.observe(el);
+    });
+  })();
+
+  /* ===== BUTTON RIPPLE ===== */
+  document.querySelectorAll('.uf-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const ripple = document.createElement('span');
+      ripple.className = 'uf-ripple';
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
   </script>
 
   <footer class="footer">
@@ -3654,6 +3908,11 @@ ${fraternoLinea}
         'hero.subtitle': 'Cap. Pasivo Alpha Alpha',
         'hero.location': 'Roberto Garces, FL.',
         'hero.tagline': 'Impactando Nuestras Comunidades',
+        'hero.cta': 'Conoce el Capítulo &nbsp;↓',
+        'about.stat1': 'Fundación',
+        'about.stat2': 'Hermanos',
+        'about.stat3': 'Florida, USA',
+        'about.desc': 'Somos el primer capítulo de <strong>Phi Zeta Chi</strong> establecido fuera de Puerto Rico. Desde 2003, servimos a comunidades en Florida a través de la hermandad, el liderazgo y el compromiso social Latino.',
         'uh.btn': '¿Qué es United Hearts?',
         'uh.p1': '<strong>United Hearts – Hope for All</strong> es la división de contacto comunitario y ayuda humanitaria del Capítulo Pasivo Alpha Alpha – Roberto Garcés, Florida, de la Fraternidad PHI ZETA CHI.',
         'uh.p2': 'Su propósito es canalizar esfuerzos y recursos en apoyo a las poblaciones más vulnerables.',
@@ -3703,6 +3962,11 @@ ${fraternoLinea}
         'hero.subtitle': 'Passive Chapter Alpha Alpha',
         'hero.location': 'Roberto Garces, FL.',
         'hero.tagline': 'Impacting Our Communities',
+        'hero.cta': 'Meet the Chapter &nbsp;↓',
+        'about.stat1': 'Founded',
+        'about.stat2': 'Brothers',
+        'about.stat3': 'Florida, USA',
+        'about.desc': 'We are the first <strong>Phi Zeta Chi</strong> chapter established outside of Puerto Rico. Since 2003, we serve communities in Florida through brotherhood, leadership, and Latino social commitment.',
         'uh.btn': 'What is United Hearts?',
         'uh.p1': '<strong>United Hearts – Hope for All</strong> is the community outreach and humanitarian aid division of Passive Chapter Alpha Alpha – Roberto Garcés, Florida, of the PHI ZETA CHI Fraternity.',
         'uh.p2': 'Its purpose is to channel efforts and resources in support of the most vulnerable populations.',
