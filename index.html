@@ -719,7 +719,7 @@
   <style>
     /* ===== DONATION SECTION ===== */
     .donation {
-      background: #ffffff;
+      background: linear-gradient(180deg, #fffdf8 0%, #fff8ee 100%);
       position: relative;
       overflow: hidden;
     }
@@ -729,8 +729,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 32px 20px 24px;
-      gap: 24px;
+      padding: 28px 20px 32px;
+      gap: 0;
     }
 
     /* LEFT */
@@ -742,8 +742,8 @@
     }
 
     .donation__heart-wrap {
-      width: 260px;
-      height: 260px;
+      width: 220px;
+      height: 220px;
     }
 
     .donation__heart-svg {
@@ -778,73 +778,85 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0;
       align-items: center;
       text-align: center;
       width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 20px 18px 22px;
+      margin-top: 16px;
     }
 
     .donation__title-label {
       font-family: 'Lato', sans-serif;
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 400;
       color: #e05a00;
       line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
     }
 
     .donation__title {
       font-family: 'Lato', sans-serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 900;
       color: #1a3a6b;
-      line-height: 1.15;
+      line-height: 1.2;
+      margin-bottom: 14px;
     }
 
     .donation__info-row {
       display: flex;
-      align-items: stretch;
-      gap: 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 14px;
     }
 
     .donation__phone-amounts {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      flex: 1;
-      padding-right: 12px;
+      gap: 4px;
+      align-items: center;
     }
 
     .donation__phone {
       font-family: 'Lato', sans-serif;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 400;
       color: #1a6b3a;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .donation__phone strong {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
     }
 
     .donation__divider-h {
       height: 1px;
-      background: #ccc;
-      width: 100%;
+      background: rgba(0,0,0,0.08);
+      width: 80%;
+      margin: 4px auto;
     }
 
     .donation__amounts {
       display: flex;
       align-items: baseline;
       gap: 5px;
-      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .donation__amounts-big {
       font-family: 'Lato', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
       color: #1a6b3a;
       letter-spacing: -0.5px;
@@ -854,36 +866,40 @@
       font-family: 'Lato', sans-serif;
       font-size: 12px;
       font-weight: 400;
-      color: #555;
+      color: #777;
     }
 
     .donation__vdivider {
-      width: 1px;
-      background: #ccc;
-      align-self: stretch;
-      margin: 0 12px;
+      display: none;
     }
 
     .donation__treasurer {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
       gap: 2px;
+      background: #f8f4ee;
+      border-radius: 8px;
+      padding: 8px 20px;
+      width: 100%;
     }
 
     .donation__treasurer-label {
       font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      color: #555;
+      font-size: 11px;
+      color: #888;
       font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .donation__treasurer-name {
       font-family: 'Lato', sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       color: #1a1a1a;
       font-weight: 400;
       line-height: 1.4;
+      text-align: center;
     }
 
     .donation__treasurer-name strong {
@@ -892,10 +908,15 @@
 
     /* Payment buttons */
     .donation__payments {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 2px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .donation__payments .pay-btn:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
     }
 
     .pay-btn {
@@ -903,15 +924,17 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      padding: 7px 10px;
+      padding: 11px 10px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      transition: filter 0.15s;
-      min-width: 60px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: filter 0.15s, transform 0.1s;
+      width: 100%;
     }
+    .pay-btn:active { transform: scale(0.97); }
 
     .pay-btn:hover { filter: brightness(1.1); }
 
