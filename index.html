@@ -157,11 +157,6 @@
       width: 100%;
       min-height: 100vh;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 80px;
     }
 
     /* Photo background */
@@ -233,15 +228,13 @@
 
     /* Content */
     .hero__content {
-      position: relative;
-      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
+      padding: 48px 20px 40px;
       gap: 8px;
-      margin-top: auto;
+      background: linear-gradient(180deg, #1a0d00 0%, #0a0500 100%);
     }
 
     .hero__emblem {
@@ -518,29 +511,28 @@
     <div class="hero__photo" id="heroPhoto"></div>
     <video class="hero__video" id="heroVideo" src="/imagenes%202/video/video%20hero.mp4" muted playsinline loop></video>
     <div class="hero__overlay-gradient"></div>
-    <div class="hero__bottom-fade"></div>
 
 
     <canvas class="hero__sparkles" id="sparkleCanvas"></canvas>
-
-    <div class="hero__content">
-      
-      <img class="hero__emblem" src="/imagenes%202/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).png" alt="Phi Zeta Chi Emblema"/>
-
-      <h1 class="hero__title">Phi Zeta Chi</h1>
-
-      <div class="hero__subtitle-line">
-        <span class="hero__subtitle" data-i18n="hero.subtitle">Cap. Pasivo Alpha Alpha</span>
-      </div>
-
-      <p class="hero__location" data-i18n="hero.location">Roberto Garces, FL.</p>
-
-      <div class="hero__tagline-wrap">
-        <p class="hero__tagline" data-i18n="hero.tagline">Impactando Nuestras Comunidades</p>
-      </div>
-      <a href="#nosotros" class="hero__cta-btn" data-i18n="hero.cta">Conoce el Capítulo &nbsp;↓</a>
-    </div>
   </section>
+
+  <div class="hero__content">
+
+    <img class="hero__emblem" src="/imagenes%202/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(2).png" alt="Phi Zeta Chi Emblema"/>
+
+    <h1 class="hero__title">Phi Zeta Chi</h1>
+
+    <div class="hero__subtitle-line">
+      <span class="hero__subtitle" data-i18n="hero.subtitle">Cap. Pasivo Alpha Alpha</span>
+    </div>
+
+    <p class="hero__location" data-i18n="hero.location">Roberto Garces, FL.</p>
+
+    <div class="hero__tagline-wrap">
+      <p class="hero__tagline" data-i18n="hero.tagline">Impactando Nuestras Comunidades</p>
+    </div>
+    <a href="#nosotros" class="hero__cta-btn" data-i18n="hero.cta">Conoce el Capítulo &nbsp;↓</a>
+  </div>
 
   
   <section class="donation">
@@ -549,58 +541,12 @@
       <div class="donation__left">
         
         <div class="donation__heart-wrap">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="donation__heart-svg">
-            <defs>
-              <linearGradient id="heartOuter" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#2e8b2e"/>
-                <stop offset="50%" stop-color="#f5c800"/>
-                <stop offset="100%" stop-color="#e05a00"/>
-              </linearGradient>
-              <linearGradient id="heartInner" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3aaa3a"/>
-                <stop offset="100%" stop-color="#e07000"/>
-              </linearGradient>
-            </defs>
-            
-            <path d="M100,170 C60,145 20,115 20,75 C20,50 40,32 65,32 C80,32 92,40 100,52 C108,40 120,32 135,32 C160,32 180,50 180,75 C180,115 140,145 100,170 Z"
-                  fill="none" stroke="url(#heartOuter)" stroke-width="10" opacity="0.9"/>
-            
-            <path d="M100,155 C68,133 35,108 35,75 C35,55 50,40 70,40 C83,40 94,48 100,58 C106,48 117,40 130,40 C150,40 165,55 165,75 C165,108 132,133 100,155 Z"
-                  fill="none" stroke="#f5c800" stroke-width="7" opacity="0.7"/>
-            
-            <path d="M100,138 C78,120 52,100 52,76 C52,60 63,50 75,50 C85,50 95,57 100,66 C105,57 115,50 125,50 C137,50 148,60 148,76 C148,100 122,120 100,138 Z"
-                  fill="url(#heartInner)" opacity="0.85"/>
-            
-            <g transform="translate(100,100)">
-              <ellipse cx="-10" cy="5" rx="22" ry="16" fill="#f5a623" transform="rotate(-15)"/>
-              <ellipse cx="10" cy="5" rx="22" ry="16" fill="#e8941a" transform="rotate(15)"/>
-              
-              <rect x="-28" y="-8" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -24 -5)"/>
-              <rect x="-20" y="-12" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -16 -9)"/>
-              <rect x="-10" y="-14" width="8" height="6" rx="3" fill="#f0b030" transform="rotate(-15 -6 -11)"/>
-              <rect x="12" y="-14" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 16 -11)"/>
-              <rect x="20" y="-11" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 24 -8)"/>
-              <rect x="26" y="-6" width="8" height="6" rx="3" fill="#e07800" transform="rotate(15 30 -3)"/>
-            </g>
-            
-            <circle cx="72"  cy="28" r="12" fill="#2e8b2e"/>
-            <circle cx="100" cy="22" r="12" fill="#f5c800"/>
-            <circle cx="128" cy="28" r="12" fill="#e05a00"/>
-            
-            <path d="M64,40 Q72,50 80,48" fill="none" stroke="#2e8b2e" stroke-width="6" stroke-linecap="round"/>
-            <path d="M92,34 Q100,44 108,34" fill="none" stroke="#f5c800" stroke-width="6" stroke-linecap="round"/>
-            <path d="M120,40 Q128,50 136,48" fill="none" stroke="#e05a00" stroke-width="6" stroke-linecap="round"/>
-          </svg>
-        </div>
-        
-        <div class="donation__brand">
-          <p class="donation__brand-name">UNITED HEARTS</p>
-          <p class="donation__brand-sub">— HOPE FOR ALL —</p>
+          <img src="/img/donations/WhatsApp%20Image%202026-04-18%20at%207.59.10%20AM.jpeg" alt="United Hearts – Hope For All" class="donation__heart-svg" style="object-fit:contain;border-radius:8px;"/>
         </div>
       </div>
 
       <div class="donation__right">
-        <p class="donation__title-label">Donaciones a</p>
+        <p class="donation__title-label" data-i18n="don.label">Donaciones a</p>
         <h2 class="donation__title">UNITED HEARTS –<br>Hope For All</h2>
 
         <div class="donation__info-row">
@@ -614,7 +560,7 @@
           </div>
           <div class="donation__vdivider"></div>
           <div class="donation__treasurer">
-            <p class="donation__treasurer-label">Tesorero</p>
+            <p class="donation__treasurer-label" data-i18n="don.treasurer">Tesorero</p>
             <p class="donation__treasurer-name">Angel Torres Jr.<br><strong>"Luigi"</strong></p>
           </div>
         </div>
@@ -760,6 +706,14 @@
       btn.classList.toggle('open');
       body.classList.toggle('open');
     }
+
+    function toggleEvt(btn) {
+      const desc = btn.nextElementSibling;
+      const isOpen = desc.classList.contains('open');
+      desc.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.innerHTML = isOpen ? 'Ver Detalles &#9660;' : 'Ocultar &#9650;';
+    }
   </script>
 
   <style>
@@ -773,10 +727,10 @@
     .donation__card {
       background: transparent;
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      padding: 28px 18px 24px;
-      gap: 16px;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 24px;
+      gap: 24px;
     }
 
     /* LEFT */
@@ -784,13 +738,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      flex-shrink: 0;
-      width: 130px;
+      width: 100%;
     }
 
     .donation__heart-wrap {
-      width: 110px;
-      height: 110px;
+      width: 260px;
+      height: 260px;
     }
 
     .donation__heart-svg {
@@ -826,6 +779,9 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      align-items: center;
+      text-align: center;
+      width: 100%;
     }
 
     .donation__title-label {
@@ -1277,52 +1233,43 @@
 
         <div class="events__card">
           <div class="events__img-wrap">
-            <div class="events__img-placeholder">
-              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
-                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-              </svg>
-            </div>
+            <img src="/imagenes%202/eventos/1.jpeg" alt="Convención 2026" class="events__img"/>
           </div>
           <div class="events__card-info">
-            <p class="events__card-title" data-i18n="events.card1">CONVENCIÓN 2026</p>
-            <p class="events__card-loc" data-i18n="events.loc1">Aguadilla, PR</p>
-            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
+            <p class="events__card-title">CONVENCIÓN 2026</p>
+            <p class="events__card-loc">Aguadilla, PR · Abril 24, 25 y 26</p>
+            <button class="events__card-btn" onclick="toggleEvt(this)">Ver Detalles &#9660;</button>
+            <div class="events__desc">
+              Este año 2026 los trabajos de nuestra convención se celebrarán en el Hotel El Faro en Aguadilla, P.R. La Asamblea de miembros será el sábado 25 de abril desde las 10:00 am.
+            </div>
           </div>
         </div>
 
         <div class="events__card">
           <div class="events__img-wrap">
-            <div class="events__img-placeholder">
-              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
-                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-              </svg>
-            </div>
+            <img src="/imagenes%202/eventos/2.jpeg" alt="Phi Zeta Family Homecoming" class="events__img"/>
           </div>
           <div class="events__card-info">
-            <p class="events__card-title" data-i18n="events.card2">PHI ZETA FL. FAMILY HOMECOMING</p>
-            <p class="events__card-loc" data-i18n="events.loc2">Florida</p>
-            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
+            <p class="events__card-title">PHI ZETA FL. FAMILY HOMECOMING</p>
+            <p class="events__card-loc">Sarasota-Bradenton, FL · Jul 24, 25 y 26</p>
+            <button class="events__card-btn" onclick="toggleEvt(this)">Ver Detalles &#9660;</button>
+            <div class="events__desc">
+              Esta actividad cumbre en el estado de la Florida tiene como cometido la confraternización entre la Fraternidad PHI ZETA CHI y la Sororidad ETA PHI ZETA, como también nuestras correspondientes familias e invitados, durante un fin de semana lleno de actividades que serán de gran alegría y disfrute.
+            </div>
           </div>
         </div>
 
         <div class="events__card">
           <div class="events__img-wrap">
-            <div class="events__img-placeholder">
-              <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="8" width="44" height="44" rx="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-                <path d="M20 38 L28 26 L34 33 L40 22 L52 38" stroke="rgba(201,168,76,0.35)" stroke-width="1.5" stroke-linejoin="round"/>
-                <circle cx="24" cy="24" r="4" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
-              </svg>
-            </div>
+            <img src="/imagenes%202/eventos/3.jpeg" alt="Jornada Comunitaria" class="events__img"/>
           </div>
           <div class="events__card-info">
-            <p class="events__card-title" data-i18n="events.card3">JORNADA COMUNITARIA</p>
-            <p class="events__card-loc" data-i18n="events.tbc">Por confirmar</p>
-            <a href="#" class="events__card-btn" data-i18n="events.details">Ver Detalles &rsaquo;</a>
+            <p class="events__card-title">JORNADA COMUNITARIA</p>
+            <p class="events__card-loc">Florida · Por confirmar</p>
+            <button class="events__card-btn" onclick="toggleEvt(this)">Ver Detalles &#9660;</button>
+            <div class="events__desc">
+              Este año tenemos previsto llevar un Show presencial en la Florida con los personajes de STAR WARS para el disfrute de niños, jóvenes y adultos, dando así un alivio y pausa a muchas personas con condiciones de salud, llevando alegría. Pendientes a nuestras publicaciones.
+            </div>
           </div>
         </div>
 
@@ -1418,6 +1365,39 @@
     .events__img-placeholder svg {
       width: 30%;
       opacity: 0.4;
+    }
+
+    .events__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .events__desc {
+      display: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255,220,160,0.88);
+      background: rgba(0,0,0,0.25);
+      border-left: 2px solid rgba(201,168,76,0.4);
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    .events__desc.open { display: block; }
+
+    .events__card-btn {
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .events__card-btn.open {
+      color: var(--gold-light);
+      border-color: var(--gold-light);
     }
 
     .events__card-info {
@@ -1564,7 +1544,7 @@
         </div>
         <div class="quienes__sep">◆</div>
         <div class="quienes__stat">
-          <span class="quienes__num">22+</span>
+          <span class="quienes__num">36+</span>
           <span class="quienes__lbl" data-i18n="about.stat2">Hermanos</span>
         </div>
         <div class="quienes__sep">◆</div>
@@ -1603,16 +1583,9 @@
           <img class="dir__img" src="/img/New%20folder/persona%201.jpeg" alt="Javier Pagán Dávila"/>
         </div>
         <p class="dir__name">Javier "Vier"<br>Pagán Dávila</p>
-        <p class="dir__role" data-i18n="dir.role1">Capítulo</p>
+        <p class="dir__role" data-i18n="dir.role1">Canciller</p>
         <div class="dir__desc" id="desc1">
-          <p><strong>Capítulo Pasivo Alpha Alpha</strong><br>Roberto Garcés, Florida<br><strong>PHI ZETA CHI</strong></p>
-          <p>En la vida no existen las casualidades; cada encuentro y cada paso forman parte de un propósito mayor. Nuestra estancia en este plano es breve, y por ello asumimos como norte el amor, expresado a través del respeto, la empatía y el servicio hacia los demás.</p>
-          <p>Como Canciller del Capítulo Pasivo Alpha Alpha, reafirmo que nuestros pilares se sostienen en el respeto al ser humano y a sus procesos, en la vocación de dar sin esperar, y en el compromiso de formar líderes que impacten positivamente a sus familias y comunidades.</p>
-          <p><em>"Tu vida habla de ti."</em></p>
-          <p>Bajo esta premisa, somos un grupo de hombres auténticos, con virtudes y desafíos, pero unidos por una voluntad firme de servir, colaborar y crecer juntos.</p>
-          <p>Con fe y gratitud, continuamos nuestro camino, confiando en que Dios nos guía y bendice en cada paso.</p>
-          <p><strong>Fraternos Seremos Siempre.</strong></p>
-          <p>— Javier "Vier" Pagán Dávila</p>
+          <p data-i18n="dir.desc1">Líder de nuestra fraternidad. Su compromiso con la hermandad y el impacto comunitario guía cada paso de nuestra misión. <strong>Fraternos Seremos Siempre.</strong></p>
         </div>
         <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc1', this)">Ver Más ▾</button>
       </div>
@@ -1623,9 +1596,9 @@
           <img class="dir__img" src="/img/New%20folder/persona%202.jpeg" alt="Ricardo Delgado"/>
         </div>
         <p class="dir__name">Ricardo<br>Delgado</p>
-        <p class="dir__role" data-i18n="dir.role2">Vice Presidente</p>
+        <p class="dir__role" data-i18n="dir.role2">Vice-Canciller</p>
         <div class="dir__desc" id="desc2">
-          <p>Comprometido con el crecimiento fraternal y el servicio comunitario. Representa los valores de Phi Zeta Chi con orgullo.</p>
+          <p data-i18n="dir.desc2">Comprometido con el crecimiento fraternal y el servicio comunitario. Representa los valores de Phi Zeta Chi con orgullo.</p>
         </div>
         <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc2', this)">Ver Más ▾</button>
       </div>
@@ -1638,7 +1611,7 @@
         <p class="dir__name">Severino<br>Colón</p>
         <p class="dir__role" data-i18n="dir.role3">Secretario</p>
         <div class="dir__desc" id="desc3">
-          <p>Guardián de nuestra historia y memoria fraternal. Su precisión y dedicación mantienen viva la esencia de nuestra organización.</p>
+          <p data-i18n="dir.desc3">Guardián de nuestra historia y memoria fraternal. Su precisión y dedicación mantienen viva la esencia de nuestra organización.</p>
         </div>
         <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc3', this)">Ver Más ▾</button>
       </div>
@@ -1651,7 +1624,7 @@
         <p class="dir__name">Angel Torres Jr.<br>"Luigi"</p>
         <p class="dir__role" data-i18n="dir.role4">Tesorero</p>
         <div class="dir__desc" id="desc4">
-          <p>Responsable de la integridad financiera de nuestra fraternidad. Su transparencia y compromiso son ejemplo para todos los hermanos.</p>
+          <p data-i18n="dir.desc4">Responsable de la integridad financiera de nuestra fraternidad. Su transparencia y compromiso son ejemplo para todos los hermanos.</p>
         </div>
         <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc4', this)">Ver Más ▾</button>
       </div>
@@ -1659,12 +1632,12 @@
       
       <div class="dir__card">
         <div class="dir__img-wrap">
-          <img class="dir__img" src="/img/New%20folder/persona%205.jpeg" alt="Carlos Cisneros"/>
+          <img class="dir__img" src="/img/New%20folder/persona%205.jpeg" alt="Carlos Cintrón"/>
         </div>
-        <p class="dir__name">Carlos Cisneros<br>"Logi"</p>
-        <p class="dir__role" data-i18n="dir.role5">Presidente</p>
+        <p class="dir__name">Carlos Cintrón<br>"Logi"</p>
+        <p class="dir__role" data-i18n="dir.role5">IT Tech</p>
         <div class="dir__desc" id="desc5">
-          <p>Líder visionario de nuestra fraternidad. Su compromiso con la hermandad y el impacto comunitario guía cada paso de nuestra misión.</p>
+          <p data-i18n="dir.desc5">Fraterno encargado del área tecnológica, su compromiso es mantener nuestros trabajos al alcance de todos, usando los avances de la informática.</p>
         </div>
         <button class="dir__btn" data-i18n="dir.more" onclick="toggleDesc('desc5', this)">Ver Más ▾</button>
       </div>
@@ -3111,7 +3084,7 @@
     <div class="unirme__header">
       <div class="unirme__header-line"></div>
       <div class="unirme__header-text">
-        <p class="unirme__eyebrow">&#9670; FRATERNIDAD &#9670;</p>
+        <p class="unirme__eyebrow" data-i18n="join.eyebrow">&#9670; FRATERNIDAD &#9670;</p>
         <h2 class="unirme__title" data-i18n="join.title">¿Cómo Unirme?</h2>
       </div>
       <div class="unirme__header-line"></div>
@@ -3119,8 +3092,8 @@
 
     <div class="unirme__inner">
 
-      <p class="unirme__intro">
-        Completa el formulario y nos pondremos en contacto contigo. 
+      <p class="unirme__intro" data-i18n="join.intro">
+        Completa el formulario y nos pondremos en contacto contigo.
         Puedes enviarlo por correo o directamente vía WhatsApp.
       </p>
 
@@ -3129,64 +3102,64 @@
         <!-- Nombre completo -->
         <div class="uf-field uf-float">
           <input class="uf-input" id="uf-nombre" type="text" placeholder=" " autocomplete="name"/>
-          <label class="uf-float-label" for="uf-nombre">Nombre Completo</label>
+          <label class="uf-float-label" for="uf-nombre" data-i18n="join.name">Nombre Completo</label>
         </div>
 
         <!-- Teléfono -->
         <div class="uf-field uf-float">
           <input class="uf-input" id="uf-phone" type="tel" placeholder=" " autocomplete="tel"/>
-          <label class="uf-float-label" for="uf-phone">Teléfono de Contacto</label>
+          <label class="uf-float-label" for="uf-phone" data-i18n="join.phone">Teléfono de Contacto</label>
         </div>
 
         <!-- Ciudad -->
         <div class="uf-field uf-float">
           <input class="uf-input" id="uf-ciudad" type="text" placeholder=" "/>
-          <label class="uf-float-label" for="uf-ciudad">Región o Ciudad · FL</label>
+          <label class="uf-float-label" for="uf-ciudad" data-i18n="join.city">Región o Ciudad · FL</label>
         </div>
 
         <!-- Edad -->
         <div class="uf-field uf-float">
           <input class="uf-input" id="uf-edad" type="number" placeholder=" " min="18" max="99"/>
-          <label class="uf-float-label" for="uf-edad">Edad</label>
+          <label class="uf-float-label" for="uf-edad" data-i18n="join.age">Edad</label>
         </div>
 
         <!-- ¿Conoce fraterno? -->
         <div class="uf-field">
           <label class="uf-label">
-            <span class="uf-label-icon">✦</span> ¿Conoce a algún Fraterno?
+            <span class="uf-label-icon">✦</span> <span data-i18n="join.knowbro">¿Conoce a algún Fraterno?</span>
           </label>
           <div class="uf-radio-group">
             <label class="uf-radio-label" id="radioSiLabel">
               <input type="radio" name="conoce" value="si" id="radioSi" onchange="toggleFraterno()"/>
               <span class="uf-radio-box"></span>
-              Sí
+              <span data-i18n="join.yes">Sí</span>
             </label>
             <label class="uf-radio-label" id="radioNoLabel">
               <input type="radio" name="conoce" value="no" id="radioNo" onchange="toggleFraterno()"/>
               <span class="uf-radio-box"></span>
-              No
+              <span data-i18n="join.no">No</span>
             </label>
           </div>
           <!-- campo condicional -->
           <div class="uf-field uf-field--sub uf-float" id="fraternoField" style="display:none; margin-top:10px;">
             <input class="uf-input" id="uf-fraterno" type="text" placeholder=" "/>
-            <label class="uf-float-label" for="uf-fraterno">Nombre del Fraterno</label>
+            <label class="uf-float-label" for="uf-fraterno" data-i18n="join.broname">Nombre del Fraterno</label>
           </div>
         </div>
 
         <!-- ¿Cómo se enteró? -->
         <div class="uf-field">
           <label class="uf-label" for="uf-como">
-            <span class="uf-label-icon">✦</span> ¿Cómo se enteró de nuestro Capítulo Alpha Alpha?
+            <span class="uf-label-icon">✦</span> <span data-i18n="join.how">¿Cómo se enteró de nuestro Capítulo Alpha Alpha?</span>
           </label>
           <select class="uf-input uf-select" id="uf-como">
-            <option value="" disabled selected>Selecciona una opción</option>
-            <option value="Redes Sociales">Redes Sociales</option>
-            <option value="Un fraterno me invitó">Un fraterno me invitó</option>
-            <option value="Evento comunitario">Evento comunitario</option>
-            <option value="Búsqueda en internet">Búsqueda en internet</option>
-            <option value="Familiar o amigo">Familiar o amigo</option>
-            <option value="Otro">Otro</option>
+            <option value="" disabled selected data-i18n="join.select">Selecciona una opción</option>
+            <option value="Redes Sociales" data-i18n="join.opt1">Redes Sociales</option>
+            <option value="Un fraterno me invitó" data-i18n="join.opt2">Un fraterno me invitó</option>
+            <option value="Evento comunitario" data-i18n="join.opt3">Evento comunitario</option>
+            <option value="Búsqueda en internet" data-i18n="join.opt4">Búsqueda en internet</option>
+            <option value="Familiar o amigo" data-i18n="join.opt5">Familiar o amigo</option>
+            <option value="Otro" data-i18n="join.opt6">Otro</option>
           </select>
         </div>
 
@@ -3194,25 +3167,25 @@
         <div class="uf-submit-group">
           <button type="button" class="uf-btn uf-btn--email" onclick="enviarEmail()">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Enviar por Email
+            <span data-i18n="join.btnEmail">Enviar por Email</span>
           </button>
           <button type="button" class="uf-btn uf-btn--whatsapp" onclick="enviarWhatsApp()">
             <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Enviar por WhatsApp
+            <span data-i18n="join.btnWA">Enviar por WhatsApp</span>
           </button>
         </div>
 
         <!-- Confirmación -->
         <div class="uf-confirm" id="ufConfirm" style="display:none;">
           <span class="uf-confirm-icon">✓</span>
-          <p>¡Mensaje listo! Se abrirá tu app de correo o WhatsApp.</p>
+          <p data-i18n="join.confirm">¡Mensaje listo! Se abrirá tu app de correo o WhatsApp.</p>
         </div>
 
       </form>
 
       <!-- Info de contacto directo -->
       <div class="unirme__direct">
-        <p class="unirme__direct-label">O contáctanos directamente:</p>
+        <p class="unirme__direct-label" data-i18n="join.direct">O contáctanos directamente:</p>
         <div class="unirme__direct-links">
           <a href="mailto:pagandavilaj@gmail.com" class="unirme__direct-btn unirme__direct-btn--email">
             <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -3928,12 +3901,17 @@ ${fraternoLinea}
         'events.details': 'Ver Detalles &rsaquo;',
         'dir.title': 'DIRECTIVA',
         'dir.sub': 'FRATERNOS SEREMOS SIEMPRE',
-        'dir.role1': 'Capítulo',
-        'dir.role2': 'Vice Presidente',
+        'dir.role1': 'Canciller',
+        'dir.role2': 'Vice-Canciller',
         'dir.role3': 'Secretario',
         'dir.role4': 'Tesorero',
-        'dir.role5': 'Presidente',
+        'dir.role5': 'IT Tech',
         'dir.more': 'Ver Más ▾',
+        'dir.desc1': 'Líder de nuestra fraternidad. Su compromiso con la hermandad y el impacto comunitario guía cada paso de nuestra misión. <strong>Fraternos Seremos Siempre.</strong>',
+        'dir.desc2': 'Comprometido con el crecimiento fraternal y el servicio comunitario. Representa los valores de Phi Zeta Chi con orgullo.',
+        'dir.desc3': 'Guardián de nuestra historia y memoria fraternal. Su precisión y dedicación mantienen viva la esencia de nuestra organización.',
+        'dir.desc4': 'Responsable de la integridad financiera de nuestra fraternidad. Su transparencia y compromiso son ejemplo para todos los hermanos.',
+        'dir.desc5': 'Fraterno encargado del área tecnológica, su compromiso es mantener nuestros trabajos al alcance de todos, usando los avances de la informática.',
         'gallery.label': 'NUESTROS MOMENTOS',
         'gallery.title': 'Galería',
         'obj.title': 'OBJETIVOS, METAS<br><em>&amp; IMPACTO</em>',
@@ -3949,6 +3927,37 @@ ${fraternoLinea}
         'hist.btn': 'Ver Carta Fundacional',
         'hist.download': 'Descargar',
         'join.title': '¿Cómo Unirme?',
+        'join.eyebrow': '&#9670; FRATERNIDAD &#9670;',
+        'join.intro': 'Completa el formulario y nos pondremos en contacto contigo. Puedes enviarlo por correo o directamente vía WhatsApp.',
+        'join.name': 'Nombre Completo',
+        'join.phone': 'Teléfono de Contacto',
+        'join.city': 'Región o Ciudad · FL',
+        'join.age': 'Edad',
+        'join.knowbro': '¿Conoce a algún Fraterno?',
+        'join.yes': 'Sí',
+        'join.no': 'No',
+        'join.broname': 'Nombre del Fraterno',
+        'join.how': '¿Cómo se enteró de nuestro Capítulo Alpha Alpha?',
+        'join.select': 'Selecciona una opción',
+        'join.opt1': 'Redes Sociales',
+        'join.opt2': 'Un fraterno me invitó',
+        'join.opt3': 'Evento comunitario',
+        'join.opt4': 'Búsqueda en internet',
+        'join.opt5': 'Familiar o amigo',
+        'join.opt6': 'Otro',
+        'join.btnEmail': 'Enviar por Email',
+        'join.btnWA': 'Enviar por WhatsApp',
+        'join.confirm': '¡Mensaje listo! Se abrirá tu app de correo o WhatsApp.',
+        'join.direct': 'O contáctanos directamente:',
+        'don.label': 'Donaciones a',
+        'don.treasurer': 'Tesorero',
+        'obj.body1': '<p>Servir como un canal dinámico de comunicación que mantenga un diálogo constante entre nuestros hermanos fraternos y la comunidad. Nos esforzamos para que cada actividad sea una oportunidad de integración, donde el servicio social y la vida fraternal se fusionen en un esfuerzo único y unificado.</p>',
+        'obj.body2': '<p>Identificar y cultivar líderes íntegros que apliquen nuestros valores fraternales para servir tanto a nuestra organización como a las necesidades apremiantes de la sociedad civil.</p>',
+        'obj.body3': '<p>Gestionar un modelo de reclutamiento innovador que permita a nuevos talentos integrarse como Fraternos Honorarios, brindándoles un camino sólido y regulado de un año para convertirse en Fraternos Bonafide plenamente comprometidos.</p>',
+        'obj.body4': '<p>Aprovechar los recursos multimedia —como foros y videos— para documentar y compartir nuestra historia en tiempo real, permitiendo que el mundo sea testigo de nuestra confraternización interna y de nuestras misiones de impacto social.</p>',
+        'obj.body5': '<p><strong>Crecimiento de Matrícula:</strong> Fortalecer nuestra base de miembros anualmente atrayendo perfiles que aporten valor y pasión a nuestro Capítulo mediante el reclutamiento activo.</p><p><strong>Alianzas y Voluntariado:</strong> Consolidar una red robusta de voluntarios comunitarios y establecer alianzas estratégicas con organizaciones afines para ampliar nuestro alcance.</p><p><strong>Impacto Generacional:</strong> Ejecutar programas creativos de alto impacto diseñados específicamente para comunidades de niños, jóvenes y adultos en situaciones vulnerables.</p><p><strong>Sostenibilidad y Alcance Económico:</strong> Incrementar la recaudación de fondos y la adquisición de recursos, ampliando nuestra capacidad para responder a las necesidades de la comunidad al máximo de nuestras posibilidades.</p><p><strong>Participación Activa:</strong> Lograr un incremento anual del 20% en la asistencia y participación de nuestros fraternos en reuniones virtuales y eventos oficiales mediante promociones creativas y herramientas digitales.</p>',
+        'obj.body6': '<p>Nuestras actividades internas son de inmenso valor e interés para nuestra membresía, sirviendo como un pilar fundamental de nuestra integración. Los eventos clave incluyen nuestra Celebración de Navidad, Retiro de Verano, Asamblea General y diversos encuentros de confraternización que fortalecen nuestros lazos.</p>',
+        'obj.body7': '<p>Buscamos el equilibrio perfecto: la mística profunda de nuestra fraternidad combinada con la eficiencia de una asociación sin fines de lucro multigeneracional.</p><p>A través de la innovación y el servicio comunitario, el Capítulo Alpha Alpha ha escrito con orgullo su historia en la Florida desde el año 2003.</p>',
         'footer.motto': 'Fraternos Seremos Siempre',
         'footer.copy': '&copy; 2026 Phi Zeta Chi &middot; Alpha Alpha Florida. Todos los derechos reservados.',
       },
@@ -3982,12 +3991,17 @@ ${fraternoLinea}
         'events.details': 'View Details &rsaquo;',
         'dir.title': 'BOARD OF DIRECTORS',
         'dir.sub': 'BROTHERS WE SHALL ALWAYS BE',
-        'dir.role1': 'Chapter',
-        'dir.role2': 'Vice President',
+        'dir.role1': 'Chancellor',
+        'dir.role2': 'Vice-Chancellor',
         'dir.role3': 'Secretary',
         'dir.role4': 'Treasurer',
-        'dir.role5': 'President',
+        'dir.role5': 'IT Tech',
         'dir.more': 'Read More ▾',
+        'dir.desc1': 'Leader of our fraternity. His commitment to brotherhood and community impact guides every step of our mission. <strong>Brothers We Will Always Be.</strong>',
+        'dir.desc2': 'Committed to fraternal growth and community service. He represents the values of Phi Zeta Chi with pride.',
+        'dir.desc3': 'Guardian of our fraternal history and memory. His precision and dedication keep the essence of our organization alive.',
+        'dir.desc4': 'Responsible for the financial integrity of our fraternity. His transparency and commitment are an example for all brothers.',
+        'dir.desc5': 'Brother in charge of the technology area, his commitment is to keep our work accessible to everyone, using the advances of informatics.',
         'gallery.label': 'OUR MOMENTS',
         'gallery.title': 'Gallery',
         'obj.title': 'OBJECTIVES, GOALS<br><em>&amp; IMPACT</em>',
@@ -4003,6 +4017,37 @@ ${fraternoLinea}
         'hist.btn': 'View Founding Charter',
         'hist.download': 'Download',
         'join.title': 'How to Join?',
+        'join.eyebrow': '&#9670; FRATERNITY &#9670;',
+        'join.intro': 'Fill out the form and we will get in touch with you. You can send it by email or directly via WhatsApp.',
+        'join.name': 'Full Name',
+        'join.phone': 'Contact Phone',
+        'join.city': 'Region or City · FL',
+        'join.age': 'Age',
+        'join.knowbro': 'Do you know any Brother?',
+        'join.yes': 'Yes',
+        'join.no': 'No',
+        'join.broname': 'Brother\'s Name',
+        'join.how': 'How did you hear about our Alpha Alpha Chapter?',
+        'join.select': 'Select an option',
+        'join.opt1': 'Social Media',
+        'join.opt2': 'A brother invited me',
+        'join.opt3': 'Community event',
+        'join.opt4': 'Internet search',
+        'join.opt5': 'Family or friend',
+        'join.opt6': 'Other',
+        'join.btnEmail': 'Send by Email',
+        'join.btnWA': 'Send by WhatsApp',
+        'join.confirm': 'Message ready! Your email or WhatsApp app will open.',
+        'join.direct': 'Or contact us directly:',
+        'don.label': 'Donations to',
+        'don.treasurer': 'Treasurer',
+        'obj.body1': '<p>To serve as a dynamic communication channel that maintains constant dialogue between our fraternal brothers and the community. We strive to make every activity an opportunity for integration, where social service and fraternal life merge into a unified effort.</p>',
+        'obj.body2': '<p>To identify and cultivate principled leaders who apply our fraternal values to serve both our organization and the pressing needs of civil society.</p>',
+        'obj.body3': '<p>To manage an innovative recruitment model that allows new talent to join as Honorary Brothers, providing them a solid, regulated one-year path to becoming fully committed Bonafide Brothers.</p>',
+        'obj.body4': '<p>To leverage multimedia resources — such as forums and videos — to document and share our story in real time, allowing the world to witness our internal fellowship and social impact missions.</p>',
+        'obj.body5': '<p><strong>Enrollment Growth:</strong> Strengthen our membership base annually by attracting profiles that bring value and passion to our Chapter through active recruitment.</p><p><strong>Alliances and Volunteering:</strong> Build a robust network of community volunteers and establish strategic alliances with like-minded organizations to expand our reach.</p><p><strong>Generational Impact:</strong> Execute high-impact creative programs designed specifically for communities of children, youth, and adults in vulnerable situations.</p><p><strong>Sustainability and Economic Reach:</strong> Increase fundraising and resource acquisition, expanding our capacity to respond to community needs to the fullest extent possible.</p><p><strong>Active Participation:</strong> Achieve a 20% annual increase in brothers\' attendance and participation in virtual meetings and official events through creative promotions and digital tools.</p>',
+        'obj.body6': '<p>Our internal activities hold immense value and interest for our membership, serving as a fundamental pillar of our integration. Key events include our Christmas Celebration, Summer Retreat, General Assembly, and various fellowship gatherings that strengthen our bonds.</p>',
+        'obj.body7': '<p>We seek the perfect balance: the deep mystique of our fraternity combined with the efficiency of a multigenerational nonprofit association.</p><p>Through innovation and community service, Alpha Alpha Chapter has proudly written its history in Florida since 2003.</p>',
         'footer.motto': 'Brothers We Shall Always Be',
         'footer.copy': '&copy; 2026 Phi Zeta Chi &middot; Alpha Alpha Florida. All rights reserved.',
       }
@@ -4047,16 +4092,10 @@ ${fraternoLinea}
 
     /* ── Donation ── */
     .donation { display: flex; flex-direction: column; align-items: stretch; padding: 60px 0 0; }
-    .donation__card {
-      width: 100%;
-      padding: 64px 40px;
-      gap: 64px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .donation__right { flex: 1; }
-    .donation__left { width: 220px; }
-    .donation__heart-wrap { width: 200px; height: 200px; }
+    .donation__card { flex-direction: row; align-items: center; padding: 40px 48px; gap: 40px; max-width: 1100px; margin: 0 auto; }
+    .donation__right { align-items: flex-start; text-align: left; flex: 1; }
+    .donation__left { width: 460px; }
+    .donation__heart-wrap { width: 450px; height: 450px; }
     .donation__brand-name { font-size: 18px; letter-spacing: 1px; }
     .donation__brand-sub { font-size: 12px; letter-spacing: 2px; margin-top: 4px; }
 
